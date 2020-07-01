@@ -1,0 +1,14 @@
+defaults
+auth	on
+tls	on
+tls_trust_file	/etc/ssl/cert.pem
+logfile	~/.config/msmtp/msmtp.log
+
+account icloud
+host smtp.mail.me.com
+port 587
+from phileagleson@icloud.com
+user phileagleson@icloud.com
+passwordeval "pass mutt-wizard-icloud"
+
+

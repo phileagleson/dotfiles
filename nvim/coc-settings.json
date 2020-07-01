@@ -1,0 +1,12 @@
+{
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript",  "html", "typescript", "typescriptreact", "json", "javascriptreact"],
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.tslintIntegration": true,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•",
+  "coc.preferences.formatOnType": true
+}

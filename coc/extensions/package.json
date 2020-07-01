@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "coc-angular": ">=0.901.11",
+    "coc-css": ">=1.2.3",
+    "coc-emmet": ">=1.1.4",
+    "coc-html": ">=1.2.4",
+    "coc-json": ">=1.2.6",
+    "coc-marketplace": ">=1.7.0",
+    "coc-prettier": ">=1.1.14",
+    "coc-tsserver": ">=1.4.15"
+  }
+}

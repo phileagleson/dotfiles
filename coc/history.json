@@ -1,0 +1,20 @@
+{
+  "extensions": {
+    "%2FUsers%2Fphil%2FPythonProgramming%2Fmodule5": [
+      "Cocpy"
+    ],
+    "%2FUsers%2Fphil%2FDesktop%2Fblyserver": [
+      "  -"
+    ]
+  },
+  "actions": {
+    "%2FUsers%2Fphil%2FDesktop%2Flvluptuts": [
+      "coc-rename"
+    ]
+  },
+  "diagnostics": {
+    "%2FUsers%2Fphil%2FDesktop%2Flvluptuts": [
+      "type"
+    ]
+  }
+}

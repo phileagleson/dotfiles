@@ -1,0 +1,18 @@
+
+set folder = "imaps://phileagleson@icloud.com@imap.mail.me.com:993"
+set smtp_url = "smtps://phileagleson@icloud.com@smtp.mail.me.com:587"
+
+set smtp_pass = "fmaf-bxul-wtiz-zmvh"
+set imap_pass = "fmaf-bxul-wtiz-zmvh"
+
+set spoolfile = "+INBOX"
+set record = "+Sent"
+set trash = "+Trash"
+set postponed = "+Drafts"
+
+set from = "phileagleson@icloud.com"
+set realname = "Phil Eagleson"
+
+mailboxes =INBOX =Sent =Trash =Drafts =Junk =Archive
+
+source colors.muttrc

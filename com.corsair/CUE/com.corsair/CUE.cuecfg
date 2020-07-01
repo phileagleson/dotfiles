@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<map name="BorderlessWindow">
+		<binary name="windowGeometry">%00%00%00%13%00%00%00%03%E2%00%00%00%DD%00%00%09%13%00%00%04%17</binary>
+		<value name="windowVisibility">0</value>
+	</map>
+	<map name="CommonSettings">
+		<value name="DevicePanelMinimized">false</value>
+	</map>
+	<map name="DataCollection">
+		<value name="connected_device_list_changed_between_sessions">false</value>
+		<value name="cpu_1_frequency">3.7 GHz</value>
+		<value name="cpu_1_name">6-Core Intel Core i5</value>
+		<value name="cpu_1_number_of_cores">6</value>
+		<value name="display_resolution">2560_1440</value>
+		<value name="enabled_sdk">true</value>
+		<value name="first_appearance_at">2020-06-28T06:41:10.924Z</value>
+		<value name="first_icue_ver">3.30.89</value>
+		<value name="gpu_1_driver_version">No information was collected</value>
+		<value name="gpu_1_frequency">No information was collected</value>
+		<value name="gpu_1_name">Radeon Pro 580X</value>
+		<value name="gpu_1_ram_size">0</value>
+		<value name="gpu_1_ram_type">No information was collected</value>
+		<value name="icue_running_now">true</value>
+		<value name="icue_space_opened">false</value>
+		<value name="icue_sw_language">en</value>
+		<value name="keyboard_1_connected_now">true</value>
+		<value name="keyboard_1_connection_type">wired</value>
+		<value name="keyboard_1_device_id">2dcaf8497d99c931c40ff93704b302ef</value>
+		<value name="keyboard_1_first_appearance">2020-06-28T06:33:43Z</value>
+		<value name="keyboard_1_fw_ver">3.24</value>
+		<value name="keyboard_1_hw_layout">US</value>
+		<value name="keyboard_1_last_appearance">2020-06-28T06:33:43Z</value>
+		<value name="keyboard_1_manufacturer">Corsair</value>
+		<value name="keyboard_1_model_name">K70 RGB MK.2 SE</value>
+		<value name="last_appearance_at">2020-06-28T06:41:10.924Z</value>
+		<value name="motherboard_manufacturer">Apple</value>
+		<value name="motherboard_name">Apple</value>
+		<value name="num_of_connected_corsair_devices">1</value>
+		<value name="num_of_corsair_coolers_connected">0</value>
+		<value name="num_of_corsair_fans_connected">0</value>
+		<value name="num_of_corsair_psu_connected">0</value>
+		<value name="num_of_corsair_ram_modules_connected">0</value>
+		<value name="os_name">Mac OS X</value>
+		<value name="os_version">10.15.5 19F101</value>
+		<value name="osd_activated">false</value>
+		<value name="ram_frequency">2667 MHz</value>
+		<value name="ram_manufacturer">SK Hynix</value>
+		<value name="ram_size">40960</value>
+		<value name="ram_type">DDR4</value>
+		<value name="session_ended">false</value>
+		<value name="show_only_connected_devices">true</value>
+		<value name="start_on_system_startup">true</value>
+		<value name="system_language">English</value>
+		<value name="time_after_last_session_end">0</value>
+		<value name="total_icue_starts">1</value>
+		<value name="total_num_of_icue_starts">1</value>
+		<value name="total_time_icue_used">7</value>
+		<value name="user_id">e34356162e94f56732b03815f9e7fdb6d73eb668a279b945ff034be8914898a22b0dec4246352353d9fc50ffbe71eb02b48bf0dab2a4b1b1e996cfc980731a19</value>
+	</map>
+	<map name="DeviceListWatcher">
+		<value name="device_list_saved_correctly">false</value>
+	</map>
+	<map name="Devices">
+		<map name="K70 RGB MK.2 SE">
+			<value name="BrightnessLevel">66</value>
+			<value name="DeviceName">K70 RGB MK.2 SE</value>
+			<value name="DpiBrightnessLevel">100</value>
+			<value name="Layout">2</value>
+			<binary name="LedChannelCounts">%00%00%04%00%00%00%00%00%0DQVector%3Cint%3E%00%00%00%00%00</binary>
+			<binary name="LedChannelTypes">%00%00%04%00%00%00%00%00%2CQVector%3Ccue%3A%3Adev%3A%3Amanifest%3A%3ALedChannelType%3E%00%00%00%00%00</binary>
+			<value name="UniqueDeviceId">{e3419f40-e2a2-48f2-aebc-0f7a11000528}</value>
+			<map name="{e585d63b-8db5-498c-9f7b-11a4779c11b3}">
+				<value name="BrightnessLevel">66</value>
+				<value name="DeviceName">K70 RGB MK.2 SE</value>
+				<value name="DpiBrightnessLevel">100</value>
+				<value name="FirstDetected">2020-06-28T02:33:43.706</value>
+				<value name="Layout">2</value>
+				<binary name="LedChannelCounts">%00%00%04%00%00%00%00%00%0DQVector%3Cint%3E%00%00%00%00%00</binary>
+				<binary name="LedChannelTypes">%00%00%04%00%00%00%00%00%2CQVector%3Ccue%3A%3Adev%3A%3Amanifest%3A%3ALedChannelType%3E%00%00%00%00%01%00%00%00%0CNotConnected</binary>
+				<value name="UniqueDeviceId">{e3419f40-e2a2-48f2-aebc-0f7a11000528}</value>
+			</map>
+		</map>
+		<binary name="UniqueDeviceIds">%00%00%04%00%00%00%00%005QHash%3CQUuid%2CUniqueDeviceIdStorage%3A%3AUniqueDeviceData%3E%00%00%00%00%01%E5%85%D6%3B%8D%B5I%8C%9F%7B%11%A4w%9C%11%B3%00%00%1B%1C%00%00%1Bk%00%00%00%40%000%002%000%001%00A%000%001%000%00A%00F%002%00A%000%000%000%000%005%00A%00A%001%009%00E%007%00D%00F%005%000%000%001%00B%00C%003%FF%FF%FF%FF</binary>
+	</map>
+	<value name="Language">en</value>
+	<map name="Lightings">
+		<map name="Instant">
+			<value name="Color">#ff0000</value>
+			<value name="Enabled">false</value>
+		</map>
+	</map>
+	<map name="MobileServer">
+		<map name="Credentials">
+			<value name="Password">5PN2qmW</value>
+			<value name="PasswordHint"></value>
+			<value name="PasswordType">1</value>
+		</map>
+		<binary name="ServerId">%00%00%00%0C%00%00%00%00%10u%21Od%2FT4W%3FbRsTh%28T</binary>
+	</map>
+	<map name="Profiles">
+		<binary name="StoredToDevice">%00%00%00%09%00%00%00%00%02%00%00%00%1E%00k%1B%00%00%01%00%00%00%00%00%00%00%00%00%00%00%00%00%00%1E%00k%1B%00%00%03%00%00%00%00%00%00%00%00%00%00%00</binary>
+	</map>
+	<map name="QQControlsFileDialog">
+		<binary name="favoriteFolders">%00%00%00%09%00%00%00%00%00</binary>
+		<value name="height">0</value>
+		<value name="sidebarSplit">118.575</value>
+		<value name="sidebarVisible">true</value>
+		<value name="sidebarWidth">80</value>
+		<value name="width">0</value>
+	</map>
+	<map name="SwUpdate">
+		<value name="LastCheckDate">2020-07-03</value>
+	</map>
+</config>

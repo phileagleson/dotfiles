@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red87\green96\blue106;\red244\green246\blue249;\red27\green31\blue34;
+\red7\green68\blue184;\red203\green35\blue57;\red91\green40\blue180;\red6\green33\blue79;}
+{\*\expandedcolortbl;;\cssrgb\c41569\c45098\c49020;\cssrgb\c96471\c97255\c98039;\cssrgb\c14118\c16078\c18039;
+\cssrgb\c0\c36078\c77255;\cssrgb\c84314\c22745\c28627;\cssrgb\c43529\c25882\c75686;\cssrgb\c1176\c18431\c38431;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs27\fsmilli13600 \cf2 \cb3 \expnd0\expndtw0\kerning0
+" TextEdit might fail if hidden is not set.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 hidden\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Some servers have issues with backup files, see #649.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 nobackup\cf4 \
+\cf5 set\cf4  \cf5 nowritebackup\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Give more space for displaying messages.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 cmdheight\cf6 =\cf5 2\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable\cf4 \
+\cf2 " delays and poor user experience.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 updatetime\cf6 =\cf5 300\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Don't pass messages to |ins-completion-menu|.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 shortmess\cf6 +=\cf5 c\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Always show the signcolumn, otherwise it would shift the text each time\cf4 \
+\cf2 " diagnostics appear/become resolved.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 signcolumn\cf6 =\cf4 yes\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Use tab for trigger completion with characters ahead and navigate.\cf4 \
+\cf2 "\cf5  NOTE:\cf2  Use command ':verbose imap <tab>' to make sure tab is not mapped by\cf4 \
+\cf2 " other plugin before putting this into your config.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 inoremap\cf4  \cf5 <silent><expr>\cf4  \cf5 <TAB>\cf4 \
+      \\ \cf7 pumvisible\cf4 () ? \cf8 "\\<C-n>"\cf4  :\
+      \\ \cf5 <SID>\cf7 check_back_space\cf4 () ? \cf8 "\\<TAB>"\cf4  :\
+      \\ \cf7 coc#refresh\cf4 ()\
+\cf5 inoremap\cf4  \cf5 <expr><S-TAB>\cf4  \cf7 pumvisible\cf4 () ? \cf8 "\\<C-p>"\cf4  : \cf8 "\\<C-h>"\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 function!\cf4  \cf6 s:\cf7 check_back_space\cf4 () \cf6 abort\cf4 \
+  \cf6 let\cf4  \cf5 col\cf4  \cf6 =\cf4  \cf7 col\cf4 (\cf8 '.'\cf4 ) \cf6 -\cf4  \cf5 1\cf4 \
+  \cf6 return\cf4  \cf6 !\cf5 col\cf4  \cf6 ||\cf4  \cf7 getline\cf4 (\cf8 '.'\cf4 )[\cf5 col\cf4  \cf6 -\cf4  \cf5 1\cf4 ]  \cf6 =\cf4 ~# \cf8 '\\s'\cf4 \
+\cf6 endfunction\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Use <c-space> to trigger completion.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 inoremap\cf4  \cf5 <silent><expr>\cf4  \cf5 <c-space>\cf4  \cf7 coc#refresh\cf4 ()\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current\cf4 \
+\cf2 " position. Coc only does snippet and additional edit on confirm.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf6 if\cf4  \cf7 has\cf4 (\cf8 'patch8.1.1068'\cf4 )\
+\pard\pardeftab720\partightenfactor0
+\cf2   " Use `complete_info` if your (Neo)Vim version supports it.\cf4 \
+  \cf5 inoremap\cf4  \cf5 <expr>\cf4  \cf5 <cr>\cf4  \cf7 complete_info\cf4 ()[\cf8 "selected"\cf4 ] \cf6 !=\cf4  \cf8 "-1"\cf4  ? \cf8 "\\<C-y>"\cf4  : \cf8 "\\<C-g>u\\<CR>"\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf6 else\cf4 \
+  \cf5 imap\cf4  \cf5 <expr>\cf4  \cf5 <cr>\cf4  \cf7 pumvisible\cf4 () ? \cf8 "\\<C-y>"\cf4  : \cf8 "\\<C-g>u\\<CR>"\cf4 \
+\cf6 endif\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Use `[g` and `]g` to navigate diagnostics\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nmap\cf4  \cf5 <silent>\cf4  [\cf5 g\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 diagnostic\cf6 -\cf5 prev\cf4 )\
+\cf5 nmap\cf4  \cf5 <silent>\cf4  ]\cf5 g\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 diagnostic\cf6 -\cf5 next\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " GoTo code navigation.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nmap\cf4  \cf5 <silent>\cf4  \cf5 gd\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 definition)\
+\cf5 nmap\cf4  \cf5 <silent>\cf4  gy \cf5 <Plug>\cf4 (coc\cf6 -\cf5 type\cf6 -\cf4 definition)\
+\cf5 nmap\cf4  \cf5 <silent>\cf4  gi \cf5 <Plug>\cf4 (coc\cf6 -\cf4 implementation)\
+\cf5 nmap\cf4  \cf5 <silent>\cf4  \cf5 gr\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 references)\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Use K to show documentation in preview window.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  K :\cf5 call\cf4  \cf5 <SID>\cf7 show_documentation\cf4 ()\cf5 <CR>\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 function!\cf4  \cf6 s:\cf7 show_documentation\cf4 ()\
+  \cf6 if\cf4  (\cf7 index\cf4 ([\cf8 'vim'\cf4 ,\cf8 'help'\cf4 ], &\cf5 filetype\cf4 ) \cf6 >=\cf4  \cf5 0\cf4 )\
+    \cf5 execute\cf4  \cf8 'h '\cf4 .\cf7 expand\cf4 (\cf8 '<cword>'\cf4 )\
+  \cf6 else\cf4 \
+    \cf5 call\cf4  \cf7 CocAction\cf4 (\cf8 'doHover'\cf4 )\
+  \cf6 endif\cf4 \
+\cf6 endfunction\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Highlight the symbol and its references when holding the cursor.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 autocmd\cf4  \cf5 CursorHold\cf4  \cf6 *\cf4  \cf5 silent\cf4  \cf5 call\cf4  \cf7 CocActionAsync\cf4 (\cf8 'highlight'\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Symbol renaming.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nmap\cf4  \cf5 <leader>\cf4 rn \cf5 <Plug>\cf4 (coc\cf6 -\cf5 rename\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Formatting selected code.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 xmap\cf4  \cf5 <leader>f\cf4   \cf5 <Plug>\cf4 (coc\cf6 -\cf4 format\cf6 -\cf4 selected)\
+\cf5 nmap\cf4  \cf5 <leader>f\cf4   \cf5 <Plug>\cf4 (coc\cf6 -\cf4 format\cf6 -\cf4 selected)\
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 augroup\cf4  \cf7 mygroup\cf4 \
+  \cf5 autocmd\cf6 !\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2   " Setup formatexpr specified filetype(s).\cf4 \
+  \cf5 autocmd\cf4  \cf5 FileType\cf4  typescript,json \cf5 setl\cf4  \cf5 formatexpr\cf6 =\cf7 CocAction\cf4 (\cf8 'formatSelected'\cf4 )\
+\cf2   " Update signature help on jump placeholder.\cf4 \
+  \cf5 autocmd\cf4  \cf5 User\cf4  CocJumpPlaceholder \cf5 call\cf4  \cf7 CocActionAsync\cf4 (\cf8 'showSignatureHelp'\cf4 )\
+\pard\pardeftab720\partightenfactor0
+\cf6 augroup\cf4  \cf7 end\cf4 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Applying codeAction to the selected region.\cf4 \
+\cf2 "\cf5  Example:\cf2  `<leader>aap` for current paragraph\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 xmap\cf4  \cf5 <leader>a\cf4   \cf5 <Plug>\cf4 (coc\cf6 -\cf4 codeaction\cf6 -\cf4 selected)\
+\cf5 nmap\cf4  \cf5 <leader>a\cf4   \cf5 <Plug>\cf4 (coc\cf6 -\cf4 codeaction\cf6 -\cf4 selected)\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Remap keys for applying codeAction to the current line.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nmap\cf4  \cf5 <leader>\cf4 ac  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 codeaction)\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Apply AutoFix to problem on the current line.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nmap\cf4  \cf5 <leader>\cf4 qf  \cf5 <Plug>\cf4 (coc\cf6 -\cf5 fix\cf6 -\cf4 current)\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Introduce function text object\cf4 \
+\cf2 "\cf5  NOTE:\cf2  Requires 'textDocument.documentSymbol' support from the language server.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 xmap\cf4  \cf6 if\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 funcobj\cf6 -\cf5 i\cf4 )\
+\cf5 xmap\cf4  af \cf5 <Plug>\cf4 (coc\cf6 -\cf4 funcobj\cf6 -\cf5 a\cf4 )\
+\cf5 omap\cf4  \cf6 if\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf4 funcobj\cf6 -\cf5 i\cf4 )\
+\cf5 omap\cf4  af \cf5 <Plug>\cf4 (coc\cf6 -\cf4 funcobj\cf6 -\cf5 a\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Use <TAB> for selections ranges.\cf4 \
+\cf2 "\cf5  NOTE:\cf2  Requires 'textDocument/selectionRange' support from the language server.\cf4 \
+\cf2 " coc-tsserver, coc-python are the examples of servers that support it.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nmap\cf4  \cf5 <silent>\cf4  \cf5 <TAB>\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf5 range\cf6 -\cf4 select)\
+\cf5 xmap\cf4  \cf5 <silent>\cf4  \cf5 <TAB>\cf4  \cf5 <Plug>\cf4 (coc\cf6 -\cf5 range\cf6 -\cf4 select)\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Add `:Format` command to format current buffer.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 command\cf6 !\cf4  -\cf7 nargs\cf4 =\cf5 0\cf4  Format :\cf5 call\cf4  \cf7 CocAction\cf4 (\cf8 'format'\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Add `:Fold` command to fold current buffer.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 command\cf6 !\cf4  -\cf7 nargs\cf4 =? Fold :\cf5 call\cf4      \cf7 CocAction\cf4 (\cf8 'fold'\cf4 , \cf5 <f-args>\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Add `:OR` command for organize imports of the current buffer.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 command\cf6 !\cf4  -\cf7 nargs\cf4 =\cf5 0\cf4  OR   :\cf5 call\cf4      \cf7 CocAction\cf4 (\cf8 'runCommand'\cf4 , \cf8 'editor.action.organizeImport'\cf4 )\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Add (Neo)Vim's native statusline support.\cf4 \
+\cf2 "\cf5  NOTE:\cf2  Please see `:h coc-status` for integrations with external plugins that\cf4 \
+\cf2 " provide custom statusline: lightline.vim, vim-airline.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 set\cf4  \cf5 statusline\cf4 ^\cf6 =%\cf4 \{\cf7 coc#status\cf4 ()\}\cf6 %\cf4 \{\cf7 get\cf4 (\cf6 b:\cf4 ,\cf8 'coc_current_function'\cf4 ,\cf8 ''\cf4 )\}\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 " Mappings using CoCList:\cf4 \
+\cf2 " Show all diagnostics.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>a\cf4   :\cf5 <C-u>\cf4 CocList diagnostics\cf5 <cr>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Manage extensions.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>e\cf4   :\cf5 <C-u>\cf4 CocList extensions\cf5 <cr>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Show commands.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>c\cf4   :\cf5 <C-u>\cf4 CocList commands\cf5 <cr>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Find symbol of current document.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>o\cf4   :\cf5 <C-u>\cf4 CocList outline\cf5 <cr>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Search workspace symbols.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>s\cf4   :\cf5 <C-u>\cf4 CocList \cf6 -\cf4 I symbols\cf5 <cr>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Do default action for next item.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>j\cf4   :\cf5 <C-u>\cf4 CocNext\cf5 <CR>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Do default action for previous item.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>k\cf4   :\cf5 <C-u>\cf4 CocPrev\cf5 <CR>\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 " Resume latest coc list.\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf5 nnoremap\cf4  \cf5 <silent>\cf4  \cf5 <space>p\cf4   :\cf5 <C-u>\cf4 CocListResume\cf5 <CR>}
