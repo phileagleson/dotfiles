@@ -109,21 +109,27 @@ source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Set default editor to nvim
 export EDITOR='nvim'
 
+
 # Enabled true color support for terminals
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 # Aliases
 alias vim="nvim"
+alias vi="nvim"
 alias top="vtop --theme=wizard"
 alias ls="colorls -lA --sd"
 alias cdp="cd ~/Desktop/Projects"
 alias vimrc="vim ~/.config/nvim/init.vim"
-alias zshrc="vim ~/.zshrc"
-alias tmconf="vim ~/.tmux.conf"
+alias zshrc="vim ~/.config/zsh/.zshrc"
+alias tmconf="vim ~/.config/tmux/.tmux.conf"
 alias plugins="vim ~/.config/nvim/plugins.vim"
 alias chrome="open -n /Applications/Google\ Chrome.app --args --incognito"
 alias mongostart="brew services start mongodb-community@4.2"
 alias mongostop="brew services stop mongodb-community@4.2"
+alias rec="~/.config/scripts/record.sh"
+alias convert="~/.config/scripts/convert.sh"
+alias vlc="open /Applications/VLC.app"
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -133,3 +139,6 @@ prompt spaceship
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_GIT_STATUS_STASHED=''
+
+# Set vim keybindings for zsh
+#bindkey -v

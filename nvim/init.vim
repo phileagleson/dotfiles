@@ -479,6 +479,8 @@ set autoread
 
 " Enable line numbers
 set relativenumber
+set number
+
 
 " Set backups
 if has('persistent_undo')
