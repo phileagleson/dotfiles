@@ -7,5 +7,4 @@ require 'phil.cmp'
 require 'phil.dap'
 require 'phil.treesitter'
 require 'phil.lualine'
-
-
+require 'phil.autocommands'

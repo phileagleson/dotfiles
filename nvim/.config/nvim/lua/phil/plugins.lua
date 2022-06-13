@@ -57,6 +57,16 @@ return packer.startup(function(use)
     use 'folke/todo-comments.nvim'
     use 'kyazdani42/nvim-web-devicons'
 
+    -- Markdow Preview
+    use {
+        'ellisonleao/glow.nvim',
+        branch = 'main'
+    }
+    use ({
+        'iamcco/markdown-preview.nvim',
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
     -- Colorschemes
     use 'folke/tokyonight.nvim'
     use 'lunarvim/colorschemes' -- A bunch of colorschemes you can try out

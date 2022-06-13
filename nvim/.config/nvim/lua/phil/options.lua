@@ -33,3 +33,5 @@ let g:taskwiki_markup_syntax = 'markdown'
 let g:markdown_folding = 1
 ]]
 
+-- glow
+vim.g.glow_binary_path = vim.env.HOME .. "/bin"
