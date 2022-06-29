@@ -36,13 +36,18 @@ require 'lspconfig'.gopls.setup {
 }
 
 
+require 'lspconfig'.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
 require 'lspconfig'.sumneko_lua.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim' }
+                globals = { 'vim', 'packer_bootstrap' }
             },
             workspace = {
                 library = {
@@ -56,3 +61,20 @@ require 'lspconfig'.sumneko_lua.setup {
         }
     }
 }
+
+local configs = require "lspconfig.configs"
+local util = require 'lspconfig.util'
+configs["poweronls"] = {
+    default_config = {
+        cmd = { "/Users/phil/projects/poweronls/poweronls" },
+        root_dir = util.find_git_ancestor,
+        filetypes = { "poweron" },
+        autostart = true
+    },
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
+require 'lspconfig'["poweronls"].setup {}
+
+--require 'lspconfig'.poweronls.setup {}

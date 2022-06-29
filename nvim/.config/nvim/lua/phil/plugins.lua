@@ -48,11 +48,12 @@ return packer.startup(function(use)
     use 'nvim-lua/plenary.nvim' -- Useful lua functions used ny lots of plugins
     use {
         'nvim-treesitter/nvim-treesitter',
-         run = ":TSUpdate",
+        run = ":TSUpdate",
     }
+    use 'nvim-treesitter/playground'
     use {
         'windwp/nvim-autopairs', -- Autopairs, integrates with both cmp and treesitter
-        config = function() require'nvim-autopairs'.setup{} end
+        config = function() require 'nvim-autopairs'.setup {} end
     }
     use 'folke/todo-comments.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -62,7 +63,7 @@ return packer.startup(function(use)
         'ellisonleao/glow.nvim',
         branch = 'main'
     }
-    use ({
+    use({
         'iamcco/markdown-preview.nvim',
         run = function() vim.fn["mkdp#util#install"]() end,
     })
@@ -72,16 +73,18 @@ return packer.startup(function(use)
     use 'lunarvim/colorschemes' -- A bunch of colorschemes you can try out
     use 'lunarvim/darkplus.nvim'
     use 'rose-pine/neovim'
+    use 'norcalli/nvim-colorizer.lua' -- show color previews for hex codes
+    use 'navarasu/onedark.nvim'
 
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
     }
 
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -102,7 +105,7 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
-    
+
     -- DAP: debugging
     use 'mfussenegger/nvim-dap'
     use 'leoluz/nvim-dap-go'
@@ -116,19 +119,20 @@ return packer.startup(function(use)
     -- STATUSLINE
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
     -- comments
     use {
         'numToStr/Comment.nvim',
         config = function()
-            require'Comment'.setup()
+            require 'Comment'.setup()
         end
     }
 
     -- VIMWIKI
     use 'vimwiki/vimwiki'
+
 
     if packer_bootstrap then
         require('packer').sync()

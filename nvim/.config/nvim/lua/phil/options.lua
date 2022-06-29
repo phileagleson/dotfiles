@@ -1,5 +1,4 @@
 vim.o.clipboard = 'unnamedplus'
-vim.o.leader = ' '
 vim.o.ignorecase = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -13,13 +12,20 @@ vim.o.termguicolors = true
 vim.o.signcolumn = 'yes'
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.scrolloff=10
+vim.o.scrolloff = 10
 vim.o.wrap = false
-vim.opt.cot={ 'menu', 'menuone', 'noselect' }
+vim.opt.cot = { 'menu', 'menuone', 'noselect' }
 
 vim.o.background = 'dark'
-vim.g.tokyonight_style = 'storm'
-pcall(vim.cmd, 'colorscheme tokyonight')
+vim.g.tokyonight_style = 'night'
+vim.g.tokyonight_transparent = true
+--vim.cmd [[colorscheme tokyonight]]
+require('onedark').setup {
+    style = 'darker'
+}
+
+require('onedark').load()
+vim.cmd [[colorscheme onedark]]
 
 vim.g.mapleader = ' '
 
@@ -31,7 +37,13 @@ let g:vimmwiki_ext2syntax = { '.md': 'markdown', '.markdown': 'markdown', '.mdow
 let g:vimwiki_markdown_link_ext = 1
 let g:taskwiki_markup_syntax = 'markdown'
 let g:markdown_folding = 1
+set runtimepath+='~/.config/nvim/queries'
 ]]
 
 -- glow
 vim.g.glow_binary_path = vim.env.HOME .. "/bin"
+
+-- disable unused providers
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.do_filetype_lua = 1
