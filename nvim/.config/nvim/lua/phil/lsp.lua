@@ -61,7 +61,9 @@ require 'lspconfig'.sumneko_lua.setup {
         }
     }
 }
-
+local lsp_flags = {
+    debounce_text_changes = 150
+}
 local configs = require "lspconfig.configs"
 local util = require 'lspconfig.util'
 configs["poweronls"] = {
@@ -71,10 +73,14 @@ configs["poweronls"] = {
         filetypes = { "poweron" },
         autostart = true
     },
+}
+
+require 'lspconfig'["poweronls"].setup {
     on_attach = on_attach,
+    flags = lsp_flags,
     capabilities = capabilities
 }
 
-require 'lspconfig'["poweronls"].setup {}
+vim.lsp.set_log_level("debug")
 
 --require 'lspconfig'.poweronls.setup {}
