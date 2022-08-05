@@ -34,3 +34,5 @@ vim.keymap.set("i", "<c-l>", function()
         ls.change_choice(1)
     end
 end)
+
+require('luasnip.loaders.from_snipmate').lazy_load()

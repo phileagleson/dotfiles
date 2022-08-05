@@ -10,5 +10,7 @@ vim.filetype.add({
         DEF = 'poweron',
         sub = 'poweron',
         SUB = 'poweron',
+        set = 'poweron',
+        SET = 'poweron',
     }
 })

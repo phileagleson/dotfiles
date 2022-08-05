@@ -1,16 +1,16 @@
 local action_state = require('telescope.actions.state')
 
-require('telescope').setup{
-  -- example of how to set defaults and mappings within telescope window
-  --  defaults = {
-  --      mappings = {
-  --          i = {
-  --              ["<c-b>"] = function() 
-  --                print(vim.inspect(action_state.get_selected_entry()))
-  --              end
-  --          }
-  --      }
-  --  }
+require('telescope').setup {
+    -- example of how to set defaults and mappings within telescope window
+    --  defaults = {
+    --      mappings = {
+    --          i = {
+    --              ["<c-b>"] = function()
+    --                print(vim.inspect(action_state.get_selected_entry()))
+    --              end
+    --          }
+    --      }
+    --  }
 }
 
 require('telescope').load_extension('fzf')
@@ -27,3 +27,4 @@ require('telescope').load_extension('fzf')
 --
 --return mappings
 
+vim.keymap.set('n', '<leader>td', ':Telescope diagnostics<cr>')

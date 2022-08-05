@@ -55,6 +55,7 @@ return packer.startup(function(use)
         'windwp/nvim-autopairs', -- Autopairs, integrates with both cmp and treesitter
         config = function() require 'nvim-autopairs'.setup {} end
     }
+    use 'p00f/nvim-ts-rainbow'
     use 'folke/todo-comments.nvim'
     use 'kyazdani42/nvim-web-devicons'
 
@@ -69,13 +70,7 @@ return packer.startup(function(use)
     })
 
     -- Colorschemes
-    use 'folke/tokyonight.nvim'
-    use 'lunarvim/colorschemes' -- A bunch of colorschemes you can try out
-    use 'lunarvim/darkplus.nvim'
-    use 'rose-pine/neovim'
-    use 'norcalli/nvim-colorizer.lua' -- show color previews for hex codes
     use 'navarasu/onedark.nvim'
-
     -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
@@ -104,7 +99,9 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lua'
     use 'L3MON4D3/LuaSnip'
+    use 'rafamadriz/friendly-snippets'
     use 'saadparwaiz1/cmp_luasnip'
+    use 'tamago324/cmp-zsh'
 
     -- DAP: debugging
     use 'mfussenegger/nvim-dap'
@@ -132,6 +129,9 @@ return packer.startup(function(use)
 
     -- VIMWIKI
     use 'vimwiki/vimwiki'
+
+    -- PLUGINS I'M WORKING ON
+    --    use '~/projects/poweron-nvim'
 
 
     if packer_bootstrap then

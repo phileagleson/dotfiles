@@ -18,12 +18,11 @@
 (number) @number
 (procedure_call) @method
 (procedure_definition) @keyword.function
-(for_statement) @repeat
 (while_statement) @repeat
 (if_statement) @conditional
 (date) @string
 (rate) @number
 (money) @string
 (identifier) @variable
-(procedure_definition (for_statement (identifier) @variable))
-  
+(for_loop) @repeat
+(poweron_function) @function.builtin

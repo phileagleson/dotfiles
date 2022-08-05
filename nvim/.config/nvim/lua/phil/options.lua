@@ -1,5 +1,6 @@
 vim.o.clipboard = 'unnamedplus'
 vim.o.ignorecase = true
+vim.o.syntax = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
@@ -17,16 +18,6 @@ vim.o.wrap = false
 vim.opt.cot = { 'menu', 'menuone', 'noselect' }
 
 vim.o.background = 'dark'
-vim.g.tokyonight_style = 'night'
-vim.g.tokyonight_transparent = true
---vim.cmd [[colorscheme tokyonight]]
-require('onedark').setup {
-    style = 'darker'
-}
-
-require('onedark').load()
-vim.cmd [[colorscheme onedark]]
-
 vim.g.mapleader = ' '
 
 -- vimwiki
@@ -38,6 +29,8 @@ let g:vimwiki_markdown_link_ext = 1
 let g:taskwiki_markup_syntax = 'markdown'
 let g:markdown_folding = 1
 set runtimepath+='~/.config/nvim/queries'
+set path+='~/projects'
+set path+='~/projects/poweron'
 ]]
 
 -- glow

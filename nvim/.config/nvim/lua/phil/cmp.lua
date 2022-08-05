@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
     snippet = {
@@ -16,9 +16,10 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
+        { name = 'path' }, -- For luasnip users.
+        { name = 'nvim_lua' }, -- For luasnip users.
+        { name = 'zsh' }, -- For luasnip users.
     }, {
         { name = 'buffer' },
     })
 })
-
-

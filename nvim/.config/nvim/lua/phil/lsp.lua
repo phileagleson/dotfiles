@@ -83,4 +83,23 @@ require 'lspconfig'["poweronls"].setup {
 
 vim.lsp.set_log_level("debug")
 
---require 'lspconfig'.poweronls.setup {}
+-- show diagnostics in hover window
+--vim.o.updatetime = 250
+--vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor"})]]
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--     buffer = bufnr,
+--     callback = function()
+--         local opts = {
+--             --            focusable = false,
+--             close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+--             focus = false,
+--             border = 'rounded',
+--             source = 'always',
+--             prefix = ' ',
+--             scope = 'cursor',
+--         }
+--         vim.diagnostic.open_float(nil, opts)
+--     end
+-- })
+
+vim.keymap.set('n', '<leader>d', ':lua vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })<cr>')
