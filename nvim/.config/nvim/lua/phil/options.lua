@@ -27,12 +27,12 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 let g:vimmwiki_ext2syntax = { '.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_markdown_link_ext = 1
 let g:taskwiki_markup_syntax = 'markdown'
-let g:markdown_folding = 1
 set runtimepath+='~/.config/nvim/queries'
 set path+='~/projects'
 set path+='~/projects/poweron'
 ]]
 
+--let g:markdown_folding = 1
 -- glow
 vim.g.glow_binary_path = vim.env.HOME .. "/bin"
 
