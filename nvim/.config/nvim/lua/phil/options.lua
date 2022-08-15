@@ -19,6 +19,8 @@ vim.opt.cot = { 'menu', 'menuone', 'noselect' }
 
 vim.o.background = 'dark'
 vim.g.mapleader = ' '
+--vim.opt.foldmethod = 'expr'
+--vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- vimwiki
 vim.cmd [[
