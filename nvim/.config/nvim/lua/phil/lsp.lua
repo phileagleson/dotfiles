@@ -66,9 +66,18 @@ local lsp_flags = {
 }
 local configs = require "lspconfig.configs"
 local util = require 'lspconfig.util'
+local os = vim.loop.os_uname().sysname
+local cmd = { "" }
+if os == "Darwin" then
+    cmd = { "/Users/phil/projects/poweronls/poweronls" }
+else
+    cmd = { "/home/phil/projects/poweronls/poweronls" }
+end
+
+
 configs["poweronls"] = {
     default_config = {
-        cmd = { "/home/phil/projects/poweronls/poweronls" },
+        cmd = cmd,
         root_dir = util.find_git_ancestor,
         filetypes = { "poweron" },
         autostart = true
