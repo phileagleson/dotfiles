@@ -130,6 +130,9 @@ return packer.startup(function(use)
     -- VIMWIKI
     use 'vimwiki/vimwiki'
 
+    -- Toggleterm
+    use 'akinsho/toggleterm.nvim'
+
     -- PLUGINS I'M WORKING ON
     --    use '~/projects/poweron-nvim'
 
