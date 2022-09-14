@@ -26,5 +26,3 @@ require('telescope').load_extension('fzf')
 --end
 --
 --return mappings
-
-vim.keymap.set('n', '<leader>td', ':Telescope diagnostics<cr>')

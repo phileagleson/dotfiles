@@ -1,6 +1,11 @@
 -- TELESCOPE --
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', nil)
 vim.keymap.set('n', '<leader>lg', '<cmd>Telescope live_grep<cr>', nil)
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', nil)
+vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', nil)
+vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', nil)
+
+-- NERDTree --
 vim.keymap.set('n', '<leader>n', '<cmd>NERDTreeToggle<cr>', nil)
 
 
@@ -23,4 +28,3 @@ vim.keymap.set('n', '<leader>nT', '<cmd>wincmd T<cr>', nil) -- open current wind
 
 -- CLOSING WINDOWS/TABS/BUFFERS
 vim.keymap.set('n', '<leader>c', '<cmd>clo<cr>', nil) -- won't close last window
-

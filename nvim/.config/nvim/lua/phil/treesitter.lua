@@ -1,5 +1,5 @@
 require 'nvim-treesitter.configs'.setup {
-    inednt = {
+    indent = {
         enable = true
     },
     ensure_installed = 'all',
@@ -15,6 +15,15 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
         extended_mode = true,
         max_file_lines = nil,
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = '<CR>',
+            scope_incremental = '<CR>',
+            node_incremental = '<TAB>',
+            node_decremental = '<S-TAB>',
+        },
     },
 }
 
