@@ -125,6 +125,9 @@ return packer.startup(function(use)
         end
     }
 
+    -- COLOR PREVIEW
+    use 'norcalli/nvim-colorizer.lua'
+
     -- VIMWIKI
     use 'vimwiki/vimwiki'
 
