@@ -2,15 +2,15 @@
 
 (comment) @comment
 (keyword) @keyword
-(target_division) @preproc
-(define_division) @preproc
-(setup_division) @preproc
-(print_division) @preproc
-(select_division) @preproc
-(sort_division) @preproc
-(letter_division) @preproc
-(total_division) @preproc
-(record_type) @constant
+(target_division) @namespace
+(define_division) @namespace
+(setup_division) @namespace
+(print_division) @namespace
+(select_division) @namespace
+(sort_division) @namespace
+(letter_division) @namespace
+(total_division) @namespace
+(record_type) @type
 (include_statement)  @include
 (string_literal) @string
 (data_type) @type.builtin
@@ -19,6 +19,7 @@
 (procedure_call) @method
 (procedure_definition) @keyword.function
 (while_statement) @repeat
+(foreachdoend) @repeat
 (if_statement) @conditional
 (date) @string
 (rate) @number
