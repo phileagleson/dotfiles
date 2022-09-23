@@ -5,6 +5,9 @@ vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', nil)
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', nil)
 vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', nil)
 
+-- Turn off highlighted text --
+vim.keymap.set('n', '<leader>h', '<cmd>nohls<cr>', nil)
+
 -- NERDTree --
 vim.keymap.set('n', '<leader>n', '<cmd>NERDTreeToggle<cr>', nil)
 

@@ -16,10 +16,24 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
-        { name = 'path' }, -- For luasnip users.
+        { name = 'path',
+            entry_filter = function(entry, _)
+                return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+            end
+        }, -- For luasnip users.
         { name = 'nvim_lua' }, -- For luasnip users.
         { name = 'zsh' }, -- For luasnip users.
     }, {
         { name = 'buffer' },
-    })
+    }),
+})
+
+cmp.setup.filetype('poweron', {
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'nvim-lua' },
+    }, {
+        { name = 'buffer' },
+    }),
 })

@@ -16,7 +16,8 @@
 (data_type) @type.builtin
 (array_type) @type.builtin
 (number) @number
-(procedure_call) @method
+(procedure_call 
+  procedure_name: (identifier) @variable) @method
 (procedure_definition) @keyword.function
 (while_statement) @repeat
 (foreachdoend) @repeat

@@ -48,6 +48,7 @@ return packer.startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ":TSUpdate",
     }
+    use 'nvim-treesitter/nvim-treesitter-context'
     use 'nvim-treesitter/playground'
     use {
         'windwp/nvim-autopairs', -- Autopairs, integrates with both cmp and treesitter
@@ -68,8 +69,8 @@ return packer.startup(function(use)
     })
 
     -- Colorschemes
-    --use 'navarasu/onedark.nvim'
-    use { 'catppuccin/nvim', as = 'catppuccin' }
+    use 'navarasu/onedark.nvim'
+    --    use { 'catppuccin/nvim', as = 'catppuccin' }
 
     -- Telescope
     use {
@@ -135,6 +136,9 @@ return packer.startup(function(use)
 
     -- Toggleterm
     use 'akinsho/toggleterm.nvim'
+
+    -- Caps Lock for Poweron
+    use 'barklan/capslock.nvim'
 
     -- PLUGINS I'M WORKING ON
     --    use '~/projects/poweron-nvim'
