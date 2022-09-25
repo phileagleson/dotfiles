@@ -38,3 +38,16 @@ parser_config.poweron = {
     },
     filetype = 'poweron'
 }
+
+require('treesitter-context').setup {
+    patterns = {
+        poweron = {
+            'procedure_definition',
+            'if_statement',
+            'define_division',
+            'setup_division',
+            'print_division',
+            'for_loop',
+        },
+    },
+}
