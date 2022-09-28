@@ -71,6 +71,7 @@ return packer.startup(function(use)
     -- Colorschemes
     use 'navarasu/onedark.nvim'
     --    use { 'catppuccin/nvim', as = 'catppuccin' }
+    -- color previews
 
     -- Telescope
     use {
