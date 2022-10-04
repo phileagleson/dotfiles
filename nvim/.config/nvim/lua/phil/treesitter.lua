@@ -31,10 +31,10 @@ local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 parser_config.poweron = {
     install_info = {
         url = '~/projects/tree-sitter-poweron',
-        files = { "src/parser.c" },
+        files = { "src/parser.c", "src/scanner.cc" },
         branch = 'main',
         generate_requires_npm = false,
-        requires_generate_from_grammar = false,
+        requires_generate_from_grammar = true,
     },
     filetype = 'poweron'
 }
