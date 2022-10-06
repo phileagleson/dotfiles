@@ -14,6 +14,7 @@ vim.filetype.add({
         SET = 'poweron',
     },
     pattern = {
-        ['.*.%d%d%d'] = 'poweron'
+        ['.*.%d%d%d'] = 'poweron',
+        ['/home/phil/projects/SourceControl/Main/Client Work/186 - USF/Staff Augmentation/*.*'] = 'poweron',
     }
 })

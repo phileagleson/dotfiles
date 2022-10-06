@@ -35,10 +35,10 @@ require 'lspconfig'.gopls.setup {
     on_attach = on_attach,
 }
 
-require 'lspconfig'.ccls.setup {
+--[[ require 'lspconfig'.ccls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
-}
+} ]]
 
 --[[ require 'lspconfig'.cssls {
     capabilities = capabilities,

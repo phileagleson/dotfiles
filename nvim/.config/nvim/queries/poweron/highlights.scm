@@ -20,7 +20,7 @@
   procedure_name: (identifier) @variable) @method
 (procedure_definition) @keyword.function
 (while_statement) @repeat
-(foreachdoend) @repeat
+(for_statement) @repeat
 (if_statement) @conditional
 (date) @string
 (rate) @number
