@@ -13,19 +13,77 @@ local rep = require('luasnip.extras').rep
 
 local snippets, autosnippets = {}, {}
 
+local doend = s('DO', fmt([[
+  DO 
+    {}
+  END
+]], {
+  i(1, ''),
+}))
+table.insert(snippets, doend)
+
+local define = s('DEFINE', fmt([[
+  DEFINE 
+    {}
+  END
+]], {
+  i(1, ''),
+}))
+table.insert(snippets, define)
+
+local setup = s('SETUP', fmt([[
+  SETUP 
+    {}
+  END
+]], {
+  i(1, ''),
+}))
+table.insert(snippets, setup)
+
+local sort = s('SORT', fmt([[
+  SORT 
+    {}
+  END
+]], {
+  i(1, ''),
+}))
+table.insert(snippets, sort)
+
+local total = s('TOTAL', fmt([[
+  TOTAL 
+    {}
+  END
+]], {
+  i(1, ''),
+}))
+table.insert(snippets, total)
+
+local proc = s('PROC', fmt([[
+  PROCEDURE {}
+    {}
+  END [END {}]
+]], {
+  i(1, 'PROCNAME'),
+  i(2, ''),
+  rep(1),
+}))
+
+table.insert(snippets, proc)
+
+
 local def = s('def', fmt([[
   {}={}
 ]], {
-    i(1, 'VARNAME'),
-    c(2, {
-        t('CHARACTER'),
-        t('DATE'),
-        t('MONEY'),
-        t('NUMBER'),
-        t('RATE'),
-    }),
+  i(1, 'VARNAME'),
+  c(2, {
+    t('CHARACTER'),
+    t('DATE'),
+    t('MONEY'),
+    t('NUMBER'),
+    t('RATE'),
+  }),
 }))
-table.insert(autosnippets, def)
+table.insert(snippets, def)
 
 local pfFieldFmt = [[
        POASJSONFIELD="{}"
@@ -40,55 +98,55 @@ local pfinput = s('pfi', fmt([[
         {}={}
       END
 ]], {
-    i(1, 'myInput'),
-    i(2, 'MYVAR'),
-    c(3, {
-        t('VALUEARRAY(I)'),
-        t('VALUE(VALUEARRAY(I))'),
-        t('MONEYVALUE(VALUEARRAY(I))'),
-        t('RATEVALUE(VALUEARRAY(I))'),
-        t('NUMBERVALUE(VALUEARRAY(I))'),
-    })
+  i(1, 'myInput'),
+  i(2, 'MYVAR'),
+  c(3, {
+    t('VALUEARRAY(I)'),
+    t('VALUE(VALUEARRAY(I))'),
+    t('MONEYVALUE(VALUEARRAY(I))'),
+    t('RATEVALUE(VALUEARRAY(I))'),
+    t('NUMBERVALUE(VALUEARRAY(I))'),
+  })
 }))
-table.insert(autosnippets, pfinput)
+table.insert(snippets, pfinput)
 
 local pfFields = function(idxs)
-    return {
-        i(idxs[1], 'KEY'),
-        c(idxs[2], {
-            t('POASJSONVALUECHAR='),
-            t('POASJSONVALUEMONEY='),
-            t('POASJSONVALUENUMBER='),
-            t('POASJSONVALUERATE='),
-            t('POASJSONVALUEDATE='),
-        }),
-        i(idxs[3], 'VALUE'),
-        d(idxs[4], function(args)
-            local datatype = args[1][1]:sub(14, #args[1][1] - 1)
-            if (datatype == 'char' or datatype == 'CHAR') then
-                return sn(1, t('POASJSONFIELDCHAR'))
-            elseif (datatype == 'money' or datatype == 'MONEY') then
-                return sn(1, t('POASJSONFIELDMONEY'))
-            elseif (datatype == 'rate' or datatype == 'RATE') then
-                return sn(1, t('POASJSONFIELDRATE'))
-            elseif (datatype == 'number' or datatype == 'NUMBER') then
-                return sn(1, t('POASJSONFIELDNUMBER'))
-            elseif (datatype == 'date' or datatype == 'DATE') then
-                return sn(1, t('POASJSONFIELDDATE'))
-            else
-                return sn(1, t(''))
-            end
-        end, { idxs[2] }),
-        c(idxs[5], {
-            t('CALL POASJSONCOMMA'),
-            t('')
-        })
-    }
+  return {
+    i(idxs[1], 'KEY'),
+    c(idxs[2], {
+      t('POASJSONVALUECHAR='),
+      t('POASJSONVALUEMONEY='),
+      t('POASJSONVALUENUMBER='),
+      t('POASJSONVALUERATE='),
+      t('POASJSONVALUEDATE='),
+    }),
+    i(idxs[3], 'VALUE'),
+    d(idxs[4], function(args)
+      local datatype = args[1][1]:sub(14, #args[1][1] - 1)
+      if (datatype == 'char' or datatype == 'CHAR') then
+        return sn(1, t('POASJSONFIELDCHAR'))
+      elseif (datatype == 'money' or datatype == 'MONEY') then
+        return sn(1, t('POASJSONFIELDMONEY'))
+      elseif (datatype == 'rate' or datatype == 'RATE') then
+        return sn(1, t('POASJSONFIELDRATE'))
+      elseif (datatype == 'number' or datatype == 'NUMBER') then
+        return sn(1, t('POASJSONFIELDNUMBER'))
+      elseif (datatype == 'date' or datatype == 'DATE') then
+        return sn(1, t('POASJSONFIELDDATE'))
+      else
+        return sn(1, t(''))
+      end
+    end, { idxs[2] }),
+    c(idxs[5], {
+      t('CALL POASJSONCOMMA'),
+      t('')
+    })
+  }
 end
 
 
 local pff = s('pff', fmt(pfFieldFmt, pfFields({ 1, 2, 3, 4, 5 })))
-table.insert(autosnippets, pff)
+table.insert(snippets, pff)
 
 local poasList = s('psl', fmt([[
 [ 
@@ -196,71 +254,71 @@ END
 #INCLUDE "RD.POAS.TXTP.TEXTPARSE.PRO"
 #INCLUDE "RD.POAS.USEOBJFIELD.NULL.PRO"
 ]], {
-    d(1, function(_, snip)
-        return sn(nil, i(1, snip.env.TM_FILENAME))
-    end, {}),
-    c(2, {
-        t('CALL POASGETCUSTOMINPUT [Used to parse custom request parameters]'),
-        t('')
-    }),
-    d(3, function(args)
-        if args[1][1] ~= '' then
-            return sn(nil, {
-                t({ 'PROCEDURE POASGETCUSTOMINPUT', '' }),
-                t({ '  ' }),
-                i(1, 'LID'),
-                t({ '=' }),
-                i(2, '""'),
-                t({ '', '' }),
-                t({ '', '  FOR I=1 TO INPUTCTR', '' }),
-                t({ '    DO', '' }),
-                t({ '      IF NAMEARRAY(I)=' }),
-                t({ '"' }),
-                i(3, 'selLoanId'),
-                t({ '"' }),
-                t({ ' THEN', '' }),
-                t({ '        DO', '' }),
-                t({ '          ' }),
-                rep(1),
-                t({ '=VALUEARRAY(I)', '' }),
-                t({ '        END', '' }),
-                t({ '    END', '', '' }),
-                t({ '  IF ' }),
-                rep(1),
-                t({ '= "" THEN ', '' }),
-                t({ '    DO', '' }),
-                t({ '      ERRORMSGCTR=ERRORMSGCTR+1', '' }),
-                t({ '      ERRORMSG(ERRORMSGCTR)="' }),
-                rep(3),
-                t({ ' Cannot be Blank"', '' }),
-                t({ '      STATUSTYPE="error"', '' }),
-                t({ '    END', '' }),
-                t({ 'END' })
-            })
-        else
-            return sn(1, { t('') })
-        end
+  d(1, function(_, snip)
+    return sn(nil, i(1, snip.env.TM_FILENAME))
+  end, {}),
+  c(2, {
+    t('CALL POASGETCUSTOMINPUT [Used to parse custom request parameters]'),
+    t('')
+  }),
+  d(3, function(args)
+    if args[1][1] ~= '' then
+      return sn(nil, {
+        t({ 'PROCEDURE POASGETCUSTOMINPUT', '' }),
+        t({ '  ' }),
+        i(1, 'LID'),
+        t({ '=' }),
+        i(2, '""'),
+        t({ '', '' }),
+        t({ '', '  FOR I=1 TO INPUTCTR', '' }),
+        t({ '    DO', '' }),
+        t({ '      IF NAMEARRAY(I)=' }),
+        t({ '"' }),
+        i(3, 'selLoanId'),
+        t({ '"' }),
+        t({ ' THEN', '' }),
+        t({ '        DO', '' }),
+        t({ '          ' }),
+        rep(1),
+        t({ '=VALUEARRAY(I)', '' }),
+        t({ '        END', '' }),
+        t({ '    END', '', '' }),
+        t({ '  IF ' }),
+        rep(1),
+        t({ '= "" THEN ', '' }),
+        t({ '    DO', '' }),
+        t({ '      ERRORMSGCTR=ERRORMSGCTR+1', '' }),
+        t({ '      ERRORMSG(ERRORMSGCTR)="' }),
+        rep(3),
+        t({ ' Cannot be Blank"', '' }),
+        t({ '      STATUSTYPE="error"', '' }),
+        t({ '    END', '' }),
+        t({ 'END' })
+      })
+    else
+      return sn(1, { t('') })
+    end
 
-    end, { 2 }),
-    i(14, ''),
-    sn(4, { i(1, 'getDataList'), t('Rs') }),
-    d(5, function(args)
-        local listName = ''
-        for x = 1, #args[1][1] - 2 do
-            if (x > 3) then
-                listName = listName .. args[1][1]:sub(x, x)
-            end
-        end
-        return sn(nil, {
-            i(1, listName)
-        })
-    end, { 4 }),
-    i(6, 'X'),
-    c(7, { i(nil, '1'), i(nil, '0') }),
-    i(8, 'ITEMCOUNT'),
-    rep(6),
-    rep(7),
-    unpack(pfFields({ 9, 10, 11, 12, 13 }))
+  end, { 2 }),
+  i(14, ''),
+  sn(4, { i(1, 'getDataList'), t('Rs') }),
+  d(5, function(args)
+    local listName = ''
+    for x = 1, #args[1][1] - 2 do
+      if (x > 3) then
+        listName = listName .. args[1][1]:sub(x, x)
+      end
+    end
+    return sn(nil, {
+      i(1, listName)
+    })
+  end, { 4 }),
+  i(6, 'X'),
+  c(7, { i(nil, '1'), i(nil, '0') }),
+  i(8, 'ITEMCOUNT'),
+  rep(6),
+  rep(7),
+  unpack(pfFields({ 9, 10, 11, 12, 13 }))
 }
 )
 )
@@ -395,9 +453,9 @@ END
 #INCLUDE "RD.POAS.TXTP.TEXTPARSE.PRO"
 #INCLUDE "RD.POAS.USEOBJFIELD.NULL.PRO"
 ]], {
-    d(1, function(_, snip)
-        return sn(nil, i(1, snip.env.TM_FILENAME))
-    end, {}),
+  d(1, function(_, snip)
+    return sn(nil, i(1, snip.env.TM_FILENAME))
+  end, {}),
 }))
 table.insert(snippets, psf)
 return snippets, autosnippets
