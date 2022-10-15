@@ -12,6 +12,8 @@ vim.filetype.add({
         SUB = 'poweron',
         set = 'poweron',
         SET = 'poweron',
+        fmp = 'poweron',
+        FMP = 'poweron',
     },
     pattern = {
         ['.*.%d%d%d'] = 'poweron',

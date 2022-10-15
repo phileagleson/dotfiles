@@ -28,3 +28,4 @@
 (identifier) @variable
 (for_loop) @repeat
 (poweron_function) @function.builtin
+(setexp) @function.builtin

@@ -1,4 +1,4 @@
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function()
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
@@ -13,8 +13,13 @@ local on_attach = function()
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
 end
 
-require 'nvim-lsp-installer'.setup({
-  automatic_installation = true,
+-- must setup in order
+-- 1. mason.nvim
+-- 2. mason-lspconfig.nvim
+-- 3. lspconfig
+--
+require 'mason'.setup({
+  max_concurrent_installers = 4,
   ui = {
     icons = {
       server_installed = "✓",
@@ -23,6 +28,11 @@ require 'nvim-lsp-installer'.setup({
     }
   }
 })
+
+require 'mason-lspconfig'.setup {
+  ensure_installed = {},
+  automatic_installation = false,
+}
 
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
@@ -49,6 +59,11 @@ require 'lspconfig'.ccls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
 } ]]
+
+require 'lspconfig'.clangd.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 --[[ require 'lspconfig'.cssls {
     capabilities = capabilities,

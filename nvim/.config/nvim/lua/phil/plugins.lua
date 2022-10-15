@@ -46,7 +46,7 @@ return packer.startup(function(use)
   use 'nvim-lua/plenary.nvim' -- Useful lua functions used ny lots of plugins
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate",
+    --run = ":TSUpdate",
   }
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'nvim-treesitter/playground'
@@ -92,7 +92,9 @@ return packer.startup(function(use)
 
   -- Native LSP
   use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  --use 'williamboman/nvim-lsp-installer'
 
   -- LSP Autocompletion
   use 'hrsh7th/nvim-cmp'
@@ -107,6 +109,7 @@ return packer.startup(function(use)
 
   -- DAP: debugging
   use 'mfussenegger/nvim-dap'
+  use 'jayp0521/mason-nvim-dap.nvim'
   use 'leoluz/nvim-dap-go'
   use 'rcarriga/nvim-dap-ui'
   use 'theHamsta/nvim-dap-virtual-text'
