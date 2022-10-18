@@ -1,3 +1,6 @@
-require('onedark').setup {}
+--vim.cmd [[colorscheme tokyonight-night]]
 
-vim.cmd [[colorscheme onedark]]
+
+vim.g.catppuccin_flavour = 'mocha'
+require('catppuccin').setup()
+vim.api.nvim_command 'colorscheme catppuccin'

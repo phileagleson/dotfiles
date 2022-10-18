@@ -1,10 +1,10 @@
 require 'lualine'.setup({
-    options = {
-        theme = 'onedark'
+  options = {
+    theme = 'catppuccin'
+  },
+  sections = {
+    lualine_x = {
+      { require('capslock').status_string },
     },
-    sections = {
-        lualine_x = {
-            { require('capslock').status_string },
-        },
-    },
+  },
 })

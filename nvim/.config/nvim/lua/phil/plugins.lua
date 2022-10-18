@@ -70,7 +70,8 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use 'navarasu/onedark.nvim'
-  --    use { 'catppuccin/nvim', as = 'catppuccin' }
+  use 'folke/tokyonight.nvim'
+  use { 'catppuccin/nvim', as = 'catppuccin' }
   -- color previews
 
   -- Telescope

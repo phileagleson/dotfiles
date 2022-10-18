@@ -51,25 +51,10 @@ require 'lspconfig'.clangd.setup {
 }
 
 
-require 'lspconfig'.ccls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
---[[ require 'lspconfig'.ccls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-} ]]
-
 require 'lspconfig'.clangd.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
-
---[[ require 'lspconfig'.cssls {
-    capabilities = capabilities,
-    on_attach = on_attach,
-} ]]
-
 
 require 'lspconfig'.tsserver.setup {
   capabilities = capabilities,
