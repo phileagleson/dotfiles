@@ -35,5 +35,4 @@ vim.keymap.set("i", "<c-l>", function()
     end
 end)
 
---require('luasnip.loaders.from_snipmate').lazy_load()
-require('luasnip.loaders.from_lua').lazy_load({ paths = "~/.config/nvim/lua/phil/luasnip/snippets" })
+--require('luasnip.loaders.from_lua').lazy_load({ paths = "~/.config/nvim/lua/phil/luasnip/snippets" })

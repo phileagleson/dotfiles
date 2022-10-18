@@ -61,26 +61,26 @@ require 'lspconfig'.tsserver.setup {
   on_attach = on_attach,
 }
 
-require 'lspconfig'.sumneko_lua.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim', 'packer_bootstrap' }
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
-        },
-      },
-      telemetry = {
-        enable = false,
-      },
-    }
-  }
-}
+-- require 'lspconfig'.sumneko_lua.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         globals = { 'vim', 'packer_bootstrap' }
+--       },
+--       workspace = {
+--         library = {
+--           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+--           [vim.fn.stdpath "config" .. "/lua"] = true,
+--         },
+--       },
+--       telemetry = {
+--         enable = false,
+--       },
+--     }
+--   }
+-- }
 local lsp_flags = {
   debounce_text_changes = 150
 }
@@ -93,7 +93,7 @@ if os == "Darwin" then
   cmd = { "node", "/Users/phil/projects/tspoweronlsp/server/out/server.js", "--stdio" }
 else
   --cmd = { "/home/phil/projects/poweronls/poweronls" }
-  cmd = { "node", "/home/phil/desktop/poweronext/lsp-sample/server/out/server.js", "--stdio" }
+  cmd = { "node", "/home/phil/desktop/tspoweronlsp/server/out/server.js", "--stdio" }
 end
 
 

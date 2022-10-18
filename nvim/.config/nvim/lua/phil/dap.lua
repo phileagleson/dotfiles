@@ -27,5 +27,5 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 require 'mason-nvim-dap'.setup {
-  ensure_installed = { 'node2', 'chrome', }
+  --ensure_installed = { 'node2', 'chrome', }
 }
