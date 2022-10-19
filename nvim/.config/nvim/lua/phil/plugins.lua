@@ -145,7 +145,11 @@ return packer.startup(function(use)
   -- Caps Lock for Poweron
   use 'barklan/capslock.nvim'
 
-  use 'jose-elias-alverez/null-ls.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jayp0521/mason-null-ls.nvim'
+
+  -- vim surround
+  use 'tpope/vim-surround'
   -- PLUGINS I'M WORKING ON
   --    use '~/projects/poweron-nvim'
 

@@ -1,3 +1,8 @@
+local mason_null_ls_status, mason_null_ls = pcall(require, 'mason-null-ls')
+if not mason_null_ls_status then
+  print("Error loading mason-null-ls.. is it installed?")
+end
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function()
@@ -33,7 +38,28 @@ require 'mason-lspconfig'.setup {
   ensure_installed = {},
   automatic_installation = false,
 }
-
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+mason_null_ls.setup {
+  ensure_installed = {},
+  on_attach = function(current_client, bufnr)
+    if current_client.supports_method('textDocument/formatting') then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({
+            filter = function(client)
+              -- only use null-ls for formatting instead fo lsp server
+              return client.name == 'null-ls'
+            end,
+            buffnr = bufnr,
+          })
+        end,
+      })
+    end
+  end
+}
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -91,6 +117,26 @@ local cmd = { "" }
 if os == "Darwin" then
   --cmd = { "/Users/phil/projects/poweronls/poweronls" }
   cmd = { "node", "/Users/phil/projects/tspoweronlsp/server/out/server.js", "--stdio" }
+  require 'lspconfig'.sumneko_lua.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim', 'packer_bootstrap' }
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+            [vim.fn.stdpath "config" .. "/lua"] = true,
+          },
+        },
+        telemetry = {
+          enable = false,
+        },
+      }
+    }
+  }
 else
   --cmd = { "/home/phil/projects/poweronls/poweronls" }
   cmd = { "node", "/home/phil/desktop/tspoweronlsp/server/out/server.js", "--stdio" }
@@ -101,6 +147,7 @@ configs["poweronls"] = {
   default_config = {
     cmd = cmd,
     root_dir = util.find_git_ancestor,
+
     filetypes = { "poweron" },
     autostart = true
   },
@@ -113,24 +160,14 @@ require 'lspconfig'["poweronls"].setup {
 }
 
 vim.lsp.set_log_level("debug")
+local setup, null_ls = pcall(require, 'null-ls')
+if not setup then
+  return
+end
 
--- show diagnostics in hover window
---vim.o.updatetime = 250
---vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor"})]]
--- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
---     buffer = bufnr,
---     callback = function()
---         local opts = {
---             --            focusable = false,
---             close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
---             focus = false,
---             border = 'rounded',
---             source = 'always',
---             prefix = ' ',
---             scope = 'cursor',
---         }
---         vim.diagnostic.open_float(nil, opts)
---     end
--- })
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 
-vim.keymap.set('n', '<leader>d', ':lua vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })<cr>')
+null_ls.setup {
+  sources = {}
+}
