@@ -1,6 +1,7 @@
 require 'phil.options'
 require 'phil.plugins'
 require 'phil.coloscheme'
+require 'phil.nvimtree'
 require 'phil.keymaps'
 require 'phil.telescope'
 require 'phil.lsp'

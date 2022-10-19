@@ -116,9 +116,9 @@ return packer.startup(function(use)
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
 
-  -- NERDTree
-  use 'preservim/nerdtree'
-
+  -- Tree
+  --use 'preservim/nerdtree'
+  use 'nvim-tree/nvim-tree.lua'
   -- STATUSLINE
   use {
     'nvim-lualine/lualine.nvim',
@@ -145,6 +145,7 @@ return packer.startup(function(use)
   -- Caps Lock for Poweron
   use 'barklan/capslock.nvim'
 
+  use 'jose-elias-alverez/null-ls.nvim'
   -- PLUGINS I'M WORKING ON
   --    use '~/projects/poweron-nvim'
 

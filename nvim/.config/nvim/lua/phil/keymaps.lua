@@ -8,8 +8,8 @@ vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', nil)
 -- Turn off highlighted text --
 vim.keymap.set('n', '<leader>h', '<cmd>nohls<cr>', nil)
 
--- NERDTree --
-vim.keymap.set('n', '<leader>n', '<cmd>NERDTreeToggle<cr>', nil)
+-- Tree --
+vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', nil)
 
 
 -- WINDOW NAV

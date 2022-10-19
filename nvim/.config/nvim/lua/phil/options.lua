@@ -47,3 +47,5 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.do_filetype_lua = 1
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
