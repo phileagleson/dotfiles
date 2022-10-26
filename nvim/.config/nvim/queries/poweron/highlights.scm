@@ -11,6 +11,7 @@
 (letter_division) @namespace
 (total_division) @namespace
 (record_type) @type
+(field_name) @field
 (include_statement)  @include
 (string_literal) @string
 (data_type) @type.builtin

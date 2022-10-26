@@ -17,6 +17,12 @@ vim.filetype.add({
     },
     pattern = {
         ['.*.%d%d%d'] = 'poweron',
+        ['EAR.*'] = 'poweron',
+        ['ear.*'] = 'poweron',
+        ['EMA.*'] = 'poweron',
+        ['ema.*'] = 'poweron',
+        ['ELA.*'] = 'poweron',
+        ['ela.*'] = 'poweron',
         ['/home/phil/projects/SourceControl/Main/Client Work/186 - USF/Staff Augmentation/*.*'] = 'poweron',
     }
 })
