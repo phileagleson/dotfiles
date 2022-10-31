@@ -19,7 +19,7 @@ vim.o.relativenumber = true
 vim.o.scrolloff = 10
 vim.o.wrap = false
 vim.opt.cot = { 'menu', 'menuone', 'noselect' }
-vim.o.acd = false
+--vim.o.acd = false
 
 vim.o.background = 'dark'
 vim.g.mapleader = ' '

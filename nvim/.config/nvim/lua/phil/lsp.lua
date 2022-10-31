@@ -16,6 +16,7 @@ local on_attach = function()
   vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
 end
 
 -- must setup in order
@@ -114,9 +115,11 @@ local configs = require "lspconfig.configs"
 local util = require 'lspconfig.util'
 local os = vim.loop.os_uname().sysname
 local cmd = { "" }
+local commonDir = ''
 if os == "Darwin" then
   --cmd = { "/Users/phil/projects/poweronls/poweronls" }
   cmd = { "node", "/Users/phil/projects/tspoweronlsp/server/out/server.js", "--stdio" }
+  commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.sumneko_lua.setup {
     capabilities = capabilities,
     on_attach = on_attach,
@@ -156,7 +159,10 @@ configs["poweronls"] = {
 require 'lspconfig'["poweronls"].setup {
   on_attach = on_attach,
   --flags = lsp_flags,
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    commonFilesDirectory = commonDir
+  },
 }
 
 vim.lsp.set_log_level("debug")
@@ -165,8 +171,8 @@ if not setup then
   return
 end
 
-local formatting = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
+-- local formatting = null_ls.builtins.formatting
+-- local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup {
   sources = {}
