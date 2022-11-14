@@ -8,15 +8,13 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local on_attach = function()
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { buffer = 0 })
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = 0 })
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = 0 })
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
   vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { buffer = 0 })
   vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { buffer = 0 })
   vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
-  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
 end
 
 -- must setup in order
@@ -117,7 +115,6 @@ local os = vim.loop.os_uname().sysname
 local cmd = { "" }
 local commonDir = ''
 if os == "Darwin" then
-  --cmd = { "/Users/phil/projects/poweronls/poweronls" }
   cmd = { "node", "/Users/phil/projects/tspoweronlsp/server/out/server.js", "--stdio" }
   commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.sumneko_lua.setup {
@@ -141,8 +138,8 @@ if os == "Darwin" then
     }
   }
 else
-  --cmd = { "/home/phil/projects/poweronls/poweronls" }
-  cmd = { "node", "/home/phil/desktop/tspoweronlsp/server/out/server.js", "--stdio" }
+  cmd = { "node", "/home/phil/desktop/poweron-language-server/out/main.js", "--stdio" }
+  commonDir = '/home/phil/desktop/poweron/commonFiles/'
 end
 
 
@@ -165,7 +162,7 @@ require 'lspconfig'["poweronls"].setup {
   },
 }
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("info")
 local setup, null_ls = pcall(require, 'null-ls')
 if not setup then
   return

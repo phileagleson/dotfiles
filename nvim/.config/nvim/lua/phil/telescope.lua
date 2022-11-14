@@ -14,6 +14,7 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('lazygit')
 
 -- EXAMPLE of how to export functions
 --local mappings = {

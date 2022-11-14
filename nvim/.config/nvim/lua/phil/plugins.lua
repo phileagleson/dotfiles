@@ -148,6 +148,8 @@ return packer.startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'jayp0521/mason-null-ls.nvim'
 
+  -- Git
+  use 'kdheepak/lazygit.nvim'
   -- vim surround
   use 'tpope/vim-surround'
   -- PLUGINS I'M WORKING ON
