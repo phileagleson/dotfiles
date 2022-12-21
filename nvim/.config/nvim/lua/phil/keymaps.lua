@@ -1,15 +1,18 @@
--- TELESCOPE --
-vim.keymap.set('n', '<C-p>', '<cmd>Telescope find_files<cr>', nil)
-vim.keymap.set('n', '<leader>lg', '<cmd>Telescope live_grep<cr>', nil)
-vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', nil)
-vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', nil)
-vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>', nil)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Turn off highlighted text --
-vim.keymap.set('n', '<leader>h', '<cmd>nohls<cr>', nil)
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Navigate Quick fix list
+vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 
 -- Tree --
-vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', nil)
+vim.keymap.set('n', '<leader>n', vim.cmd.Ex, nil)
 
 
 -- WINDOW NAV
@@ -31,6 +34,3 @@ vim.keymap.set('n', '<leader>nT', '<cmd>wincmd T<cr>', nil) -- open current wind
 
 -- CLOSING WINDOWS/TABS/BUFFERS
 vim.keymap.set('n', '<leader>c', '<cmd>clo<cr>', nil) -- won't close last window
-
--- LAZYGIT
-vim.keymap.set('n', '<leader>gg', ':LazyGit<cr>', nil) -- won't close last window

@@ -12,8 +12,5 @@
  (for_statement)
 ] @indent
 
-[
- (block_end)
-] @indent_end
 
 

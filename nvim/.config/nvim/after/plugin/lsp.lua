@@ -8,7 +8,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local on_attach = function()
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = 0 })
+  vim.keymap.set('n', '<leader>rr', '<cmd>Telescope lsp_references<CR>', { buffer = 0 })
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
@@ -75,7 +75,6 @@ require 'lspconfig'.clangd.setup {
   on_attach = on_attach,
 }
 
-
 require 'lspconfig'.clangd.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -86,26 +85,27 @@ require 'lspconfig'.tsserver.setup {
   on_attach = on_attach,
 }
 
--- require 'lspconfig'.sumneko_lua.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
---   settings = {
---     Lua = {
---       diagnostics = {
---         globals = { 'vim', 'packer_bootstrap' }
---       },
---       workspace = {
---         library = {
---           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
---           [vim.fn.stdpath "config" .. "/lua"] = true,
---         },
---       },
---       telemetry = {
---         enable = false,
---       },
---     }
---   }
--- }
+require 'lspconfig'.sumneko_lua.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim', 'packer_bootstrap' }
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.stdpath "config" .. "/lua"] = true,
+        },
+      },
+      telemetry = {
+        enable = false,
+      },
+    }
+  }
+}
+
 local lsp_flags = {
   debounce_text_changes = 150
 }
@@ -139,7 +139,7 @@ if os == "Darwin" then
   }
 else
   cmd = { "node", "/home/phil/desktop/poweron-language-server/out/main.js", "--stdio" }
-  commonDir = '/home/phil/desktop/poweron/commonFiles/'
+  --commonDir = '/home/phil/desktop/poweron/commonFiles/'
 end
 
 
@@ -162,7 +162,7 @@ require 'lspconfig'["poweronls"].setup {
   },
 }
 
-vim.lsp.set_log_level("info")
+--vim.lsp.set_log_level("info")
 local setup, null_ls = pcall(require, 'null-ls')
 if not setup then
   return

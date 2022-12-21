@@ -54,25 +54,15 @@ return packer.startup(function(use)
     'windwp/nvim-autopairs', -- Autopairs, integrates with both cmp and treesitter
     config = function() require 'nvim-autopairs'.setup {} end
   }
+
   use 'p00f/nvim-ts-rainbow'
   use 'folke/todo-comments.nvim'
   use 'kyazdani42/nvim-web-devicons'
-
-  -- Markdow Preview
-  use {
-    'ellisonleao/glow.nvim',
-    branch = 'main'
-  }
-  use({
-    'iamcco/markdown-preview.nvim',
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
 
   -- Colorschemes
   use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
-  -- color previews
 
   -- Telescope
   use {
@@ -86,7 +76,6 @@ return packer.startup(function(use)
   }
 
   use 'nvim-telescope/telescope-file-browser.nvim'
-
 
   -- Grammar Checking
   use 'rhysd/vim-grammarous'
@@ -116,9 +105,6 @@ return packer.startup(function(use)
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
 
-  -- Tree
-  --use 'preservim/nerdtree'
-  use 'nvim-tree/nvim-tree.lua'
   -- STATUSLINE
   use {
     'nvim-lualine/lualine.nvim',
@@ -149,11 +135,12 @@ return packer.startup(function(use)
   use 'jayp0521/mason-null-ls.nvim'
 
   -- Git
-  use 'kdheepak/lazygit.nvim'
+  use 'tpope/vim-fugitive'
   -- vim surround
   use 'tpope/vim-surround'
   -- PLUGINS I'M WORKING ON
   --    use '~/projects/poweron-nvim'
+  use 'theprimeagen/harpoon'
 
 
   if packer_bootstrap then
