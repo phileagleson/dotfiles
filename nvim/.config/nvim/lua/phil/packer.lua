@@ -136,6 +136,8 @@ return packer.startup(function(use)
 
   -- Git
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
+  use 'lewis6991/gitsigns.nvim'
   -- vim surround
   use 'tpope/vim-surround'
   -- PLUGINS I'M WORKING ON

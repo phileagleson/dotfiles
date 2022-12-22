@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-i:block"
 
 vim.o.clipboard = 'unnamedplus'
 vim.o.ignorecase = true
@@ -21,10 +21,14 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 10
 vim.o.wrap = false
-vim.opt.cot = { 'menu', 'menuone', 'noselect' }
+vim.o.completeopt = 'menuone,noselect'
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 --vim.o.acd = false
 
 vim.o.background = 'dark'
+vim.opt.updatetime = 50
+vim.opt.colorcolumn = "80"
 vim.g.mapleader = ' '
 --vim.opt.foldmethod = 'expr'
 --vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
