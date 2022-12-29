@@ -11,22 +11,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 local indentGroup = vim.api.nvim_create_augroup('PoweronIndents', { clear = true })
-vim.api.nvim_create_autocmd('FileType poweron', {
-  buffer = 0,
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'poweron',
   callback = function()
     vim.opt_local.shiftwidth = 1
     vim.opt_local.tabstop = 1
-    vim.opt.foldmethod = 'expr'
-    vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.opt.foldcolumn = '2'
     require('capslock').toggle('n')
   end,
   group = indentGroup,
 })
 
-local foldGroup = vim.api.nvim_create_augroup('PoweronFolds', { clear = true })
-vim.api.nvim_create_autocmd({ 'FileType poweron', 'BufReadPost,FileReadPost' }, {
-  buffer = 0,
+local foldGroup = vim.api.nvim_create_augroup('OpenFolds', { clear = true })
+vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost,FileReadPost' }, {
+  pattern = '*',
   callback = function()
     vim.api.nvim_command('normal zR')
   end,

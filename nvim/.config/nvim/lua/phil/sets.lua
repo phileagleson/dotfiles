@@ -7,9 +7,6 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.swapfile = false
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
 vim.o.smarttab = true
 vim.o.expandtab = true
 vim.o.splitbelow = true
@@ -33,6 +30,16 @@ vim.g.mapleader = ' '
 --vim.opt.foldmethod = 'expr'
 --vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldcolumn = '2'
 -- vimwiki
 vim.cmd [[
 let g:vimwiki_list = [{'path': '~/vimwiki/',
