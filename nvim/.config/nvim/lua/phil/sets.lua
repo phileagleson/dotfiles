@@ -37,9 +37,6 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldcolumn = '2'
 -- vimwiki
 vim.cmd [[
 let g:vimwiki_list = [{'path': '~/vimwiki/',
