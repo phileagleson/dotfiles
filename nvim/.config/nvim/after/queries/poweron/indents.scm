@@ -7,10 +7,12 @@
  (total_division)
  (if_statement)
  (while_statement)
- (start_block)
  (procedure_definition)
+ (start_block) 
  (for_statement)
 ] @indent
 
-
+[
+  (end_block)
+] @dedent
 
