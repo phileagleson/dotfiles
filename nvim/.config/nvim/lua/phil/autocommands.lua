@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.shiftwidth = 1
     vim.opt_local.tabstop = 1
     vim.opt.foldmethod = 'expr'
+    vim.opt.colorcolumn = "132"
     vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
     vim.opt.foldcolumn = '2'
     require('capslock').toggle('n')
