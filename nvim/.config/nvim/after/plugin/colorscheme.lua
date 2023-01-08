@@ -1,11 +1,12 @@
---vim.cmd [[colorscheme tokyonight-night]]
+-- CATPPUCCIN --
+--[[ require('catppuccin').setup({
+  flavour = "mocha"
+}) ]]
+--vim.api.nvim_command 'colorscheme catppuccin'
 
 
---[[ vim.g.catppuccin_flavour = 'mocha'
-require('catppuccin').setup()
-vim.api.nvim_command 'colorscheme catppuccin' ]]
-
-require('tokyonight').setup({
+-- TOKYONIGHT --
+--[[ require('tokyonight').setup({
 
   style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
   transparent = true, -- Enable this to disable setting the background color
@@ -27,5 +28,23 @@ require('tokyonight').setup({
   dim_inactive = false, -- dims inactive windows
   lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 })
+]]
+--vim.cmd [[colorscheme tokyonight]]
+--
 
-vim.cmd [[colorscheme tokyonight]]
+-- NIGHTFOX --
+--[[ require('nightfox').setup({
+  options = {
+    transparent = true
+  }
+}) ]]
+
+--vim.cmd [[colorscheme  duskfox]]
+
+
+-- ONEDARK --
+require('onedark').setup({
+  transparent = true,
+  style = 'darker',
+})
+vim.cmd [[colorscheme onedark]]

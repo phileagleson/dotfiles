@@ -69,6 +69,7 @@ return packer.startup(function(use)
   -- Colorschemes
   use 'navarasu/onedark.nvim'
   use 'folke/tokyonight.nvim'
+  use 'EdenEast/nightfox.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
 
   -- Telescope
@@ -155,6 +156,8 @@ return packer.startup(function(use)
   --    use '~/projects/poweron-nvim'
   use 'theprimeagen/harpoon'
 
+  -- MDX
+  use 'jxnblk/vim-mdx-js'
 
   if packer_bootstrap then
     require('packer').sync()

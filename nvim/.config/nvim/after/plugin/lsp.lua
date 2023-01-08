@@ -65,10 +65,16 @@ mason_null_ls.setup {
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'astro' }
 }
 
 
 require 'lspconfig'.gopls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+require 'lspconfig'.astro.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -206,9 +212,14 @@ if not setup then
   return
 end
 
--- local formatting = null_ls.builtins.formatting
+
+local formatting = null_ls.builtins.formatting
 -- local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup {
-  sources = {}
+  sources = {
+    formatting.prettierd.with({
+      extra_filetypes = { "astro" }
+    })
+  }
 }
