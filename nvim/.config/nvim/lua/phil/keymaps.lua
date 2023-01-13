@@ -30,6 +30,7 @@ vim.keymap.set('n', '<leader>tn', '<cmd>tabn<cr>', nil)
 vim.keymap.set('n', '<leader>tp', '<cmd>tabp<cr>', nil)
 vim.keymap.set('n', '<leader>nt', '<cmd>tabnew<cr>', nil)
 vim.keymap.set('n', '<leader>nT', '<cmd>wincmd T<cr>', nil) -- open current window in new tab
+vim.keymap.set('n', '<leader>cd', '<cmd>:cd %:h<cr>', nil) -- change to dir of current open file
 
 
 -- CLOSING WINDOWS/TABS/BUFFERS

@@ -21,6 +21,7 @@ vim.o.wrap = false
 vim.o.completeopt = 'menuone,noselect'
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.o.mouse = ''
 --vim.o.acd = false
 
 vim.o.background = 'dark'
