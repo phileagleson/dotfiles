@@ -18,6 +18,7 @@ local on_attach = function()
   vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, { buffer = 0 })
   vim.keymap.set('n', '<leader>ds', '<cmd>Telescope lsp_document_symbols<cr>', { buffer = 0 })
   vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
+  vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { buffer = 0 })
 end
 
 -- must setup in order
