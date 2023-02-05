@@ -98,6 +98,9 @@ require 'lspconfig'.tsserver.setup {
 require 'lspconfig'.rust_analyzer.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  cmd = {
+    "rustup", "run", "stable", "rust-analyzer",
+  }
 }
 
 require 'lspconfig'.sumneko_lua.setup {
