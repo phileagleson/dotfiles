@@ -16,10 +16,13 @@ vim.keymap.set('n', '<leader>n', vim.cmd.Ex, nil)
 
 
 -- WINDOW NAV
-vim.keymap.set('n', '<c-l>', '<cmd>wincmd l<cr>', nil)
+--[[ vim.keymap.set('n', '<c-l>', '<cmd>wincmd l<cr>', nil)
 vim.keymap.set('n', '<c-h>', '<cmd>wincmd h<cr>', nil)
 vim.keymap.set('n', '<c-j>', '<cmd>wincmd j<cr>', nil)
-vim.keymap.set('n', '<c-k>', '<cmd>wincmd k<cr>', nil)
+vim.keymap.set('n', '<c-k>', '<cmd>wincmd k<cr>', nil) ]]
+
+vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>', nil)
+vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>', nil)
 
 -- BUFFER NAV
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', nil)
