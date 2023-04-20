@@ -1,0 +1,171 @@
+[
+{
+    "height": 35, // Waybar height (to be removed for auto height)
+    "layer": "top",
+    "output": "DP-1",
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": ["wlr/workspaces", "cpu", "memory"],
+    "modules-center": ["custom/weather","hyprland/window"],
+    "modules-right": ["pulseaudio","pulseaudio#microphone", "custom/brightness","network", "clock", "bluetooth","tray", "custom/logout"],
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	      "format": "{:%a, %d %b, %H:%M %p}",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        "on-click": "kitty --start-as-fullscreen --title btop sh -c 'btop'"
+    },
+     "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory - {used:0.1f}GB used",
+        "on-click": "kitty --start-as-fullscreen --title btop sh -c 'btop'"
+    },
+//    "custom/brightness": {
+//        "format": "{icon} {}%",
+//        "format-icons": ["", "", ""],
+//        "tooltip":"click to inclease\\nright-click to declease",
+//        "signal": 99,
+//        "on-click": "brightness-up 2",
+//        "on-click-right": "brightness-down 2",
+//        "exec": "get-brightness 2",
+//        "min-length": 6
+//    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "Ethernet ",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "wlr/workspaces": {
+        "on-click": "activate"
+    },
+    "hyrpland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    "custom/logout": {
+        "format": "{icon}",
+        "format-icons": "⏻",
+        "tooltip": false,
+        "on-click": "$HOME/.config/scripts/hyprlogout"
+    },
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "$HOME/.config/waybar/scripts/weather.py",
+        "return-type": "json"
+    },
+    "bluetooth": {
+      "format": " {status}",
+      "format-disabled": "", 
+      "format-connected": " {num_connections} connected",
+      "on-click": "blueman-manager",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "smooth-scrolling-threshold": 3,
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "{icon} {format_source}",
+        "format-muted": "{format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+      "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "pamixer --default-source -t",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    },
+},
+
+{
+    "height": 35, // Waybar height (to be removed for auto height)
+    "layer": "top",
+    "output": "HDMI-A-1",
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": ["wlr/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["clock"],
+    "wlr/workspaces": {
+        "on-click": "activate"
+    },
+    "hyrpland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	      "format": "{:%a, %d %b, %I:%M %p}",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    }
+}
+]
