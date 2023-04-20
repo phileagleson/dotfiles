@@ -1,0 +1,13 @@
+#!/bin/env bash 
+
+MONITOR=$1
+
+CURBRIGHTNESS=$(get-brightness $MONITOR)
+NEWBRIGTNESS=$(($CURBRIGHTNESS + 10))
+if [[ $NEWBRIGTNESS -le 100 ]]
+then
+ ddcutil -d $MONITOR setvcp 0x10 $NEWBRIGTNESS
+ echo $NEWBRIGTNESS
+else 
+ echo 100
+fi

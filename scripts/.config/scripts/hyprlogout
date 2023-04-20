@@ -1,0 +1,31 @@
+#!/bin/env bash
+
+# if [[ ! `pidof wlogout` ]]; then
+#   wlogout --buttons-per-row 2 \
+#           --margin-left 600 \
+#           --margin-right 600 \
+#           --margin-top 350 \
+#           --margin-bottom 350 \
+#           --column-spacing 100 \
+#           --row-spacing 100 \
+#           --protocol layer-shell 
+# else
+#   pkill wlogout
+# fi
+
+
+LAYOUT="$HOME/.config/wlogout/layout"
+STYLE="$HOME/.config/wlogout/style.css"
+
+if [[ ! `pidof wlogout` ]]; then
+	wlogout --layout ${LAYOUT} --css ${STYLE} \
+		--buttons-per-row 2 \
+		--column-spacing 100 \
+		--row-spacing 100 \
+		--margin-top 350 \
+		--margin-bottom 350 \
+		--margin-left 600 \
+		--margin-right 600
+else
+	pkill wlogout
+fi

@@ -1,0 +1,15 @@
+#!/bin/env bash 
+
+LOCKSCRIPT=$HOME/.config/scripts/lockscreen
+
+#exec swayidle -w \
+#         timeout 900 "$LOCKSCRIPT" \
+#         timeout 1500 "hyprctl dispatch dpms off" \
+#                 resume "hyprctl dispatch dpms on" \
+#         before-sleep "$LOCKSCRIPT"
+swayidle -w \
+         timeout 900 "$LOCKSCRIPT" \
+         timeout 1500 "hyprctl dispatch dpms off DP-1" \
+         resume "hyprctl dispatch dpms on DP-1" \
+         timeout 1500 "hyprctl dispatch dpms off HDMI-A-1" \
+         before-sleep "$LOCKSCRIPT"

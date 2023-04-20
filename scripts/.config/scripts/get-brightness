@@ -1,0 +1,10 @@
+#!/bin/env bash
+
+#VCP code 0x10 (Brightness                    ): current value =    90, max value =   100
+MONITOR=$1
+
+BRIGHTNESS=$(ddcutil -d $MONITOR getvcp 0x10)
+BVALUE=$(cut -c 64-70 <<< $BRIGHTNESS)
+BVALUE=$(cut -d ',' -f 1 <<< $BVALUE)
+echo $BVALUE
+
