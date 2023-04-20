@@ -1,4 +1,4 @@
 require 'phil.sets'
-require 'phil.packer'
+require 'phil.lazy'
 require 'phil.keymaps'
 require 'phil.autocommands'

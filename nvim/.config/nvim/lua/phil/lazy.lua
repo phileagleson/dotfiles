@@ -48,6 +48,8 @@ require('lazy').setup({
     }
   },
 
+  'github/copilot.vim',
+
   'mbbill/undotree',
 
   'nvim-treesitter/nvim-treesitter-context',

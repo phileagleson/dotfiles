@@ -1,8 +1,20 @@
 -- CATPPUCCIN --
---[[ require('catppuccin').setup({
-  flavour = "mocha"
-}) ]]
---vim.api.nvim_command 'colorscheme catppuccin'
+require('catppuccin').setup({
+  flavour = "macchiato",
+  transparent_background = 'true',
+  integrations = {
+    telescope=true,
+    harpoon=true,
+    treesitter=true,
+    dap = {
+      enabled = true,
+      enable_ui = true,
+    }
+  }
+})
+
+
+vim.api.nvim_command 'colorscheme catppuccin'
 
 
 -- TOKYONIGHT --
@@ -43,8 +55,8 @@
 
 
 -- ONEDARK --
-require('onedark').setup({
+--[[ require('onedark').setup({
   transparent = true,
   style = 'darker',
-})
-vim.cmd [[colorscheme onedark]]
+})]]
+--vim.cmd [[colorscheme onedark]] 

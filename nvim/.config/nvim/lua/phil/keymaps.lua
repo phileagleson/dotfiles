@@ -14,6 +14,11 @@ vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 -- Tree --
 vim.keymap.set('n', '<leader>n', vim.cmd.Ex, nil)
 
+-- Tmux nav --
+vim.keymap.set('n','<C-f>', "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- Make file executable 
+vim.keymap.set('n', '<leader>x',"<cmd>!chmod +x %<CR>", {silent = true})
 
 -- WINDOW NAV
 --[[ vim.keymap.set('n', '<c-l>', '<cmd>wincmd l<cr>', nil)

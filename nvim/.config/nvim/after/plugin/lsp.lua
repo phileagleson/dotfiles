@@ -95,15 +95,20 @@ require 'lspconfig'.tsserver.setup {
   on_attach = on_attach,
 }
 
+require 'lspconfig'.svelte.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 require 'lspconfig'.rust_analyzer.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   cmd = {
-    "rustup", "run", "stable", "rust-analyzer",
+    "rust-analyzer",
   }
 }
 
-require 'lspconfig'.sumneko_lua.setup {
+require 'lspconfig'.luau_lsp.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -132,10 +137,10 @@ local util = require 'lspconfig.util'
 local os = vim.loop.os_uname().sysname
 local cmd = { "" }
 local commonDir = ''
-if os == "Darwin" then
-  cmd = { "node", "/Users/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+if os == "Linux" then
+  cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
   --commonDir = '/Users/phil/projects/poweron/RDFILES'
-  require 'lspconfig'.sumneko_lua.setup {
+  require 'lspconfig'.luau_lsp.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
