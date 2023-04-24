@@ -49,6 +49,7 @@ require('lazy').setup({
   },
 
   'github/copilot.vim',
+  --'exafunction/codeium.vim',
 
   'mbbill/undotree',
 
