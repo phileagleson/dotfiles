@@ -138,7 +138,8 @@ local os = vim.loop.os_uname().sysname
 local cmd = { "" }
 local commonDir = ''
 if os == "Linux" then
-  cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+  --cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+  cmd = { "/home/phil/projects/pols/target/debug/pols"}
   --commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.luau_lsp.setup {
     capabilities = capabilities,
@@ -220,7 +221,7 @@ require 'lspconfig'["poweronls"].setup {
   },
 }
 
---vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("info")
 local setup, null_ls = pcall(require, 'null-ls')
 if not setup then
   return

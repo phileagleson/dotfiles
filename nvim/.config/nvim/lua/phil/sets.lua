@@ -45,6 +45,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 let g:vimmwiki_ext2syntax = { '.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_markdown_link_ext = 1
 let g:taskwiki_markup_syntax = 'markdown'
+set statusline+=\{…\}%3{codeium#GetStatusString()}
 set runtimepath+='~/.config/nvim/queries'
 set path+='~/projects'
 set path+='~/projects/poweron'

@@ -42,3 +42,14 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost', 'FileReadPost' }, {
   end,
   group = foldGroup,
 })
+
+-- Open Telescope when opened without arguments
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+   if #vim.fn.argv() == 0 then 
+     vim.defer_fn(function() 
+       vim.cmd("silent! lua require('telescope.builtin').find_files()")
+    end, 500)
+   end
+  end,
+})
