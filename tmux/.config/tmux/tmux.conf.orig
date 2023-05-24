@@ -5,7 +5,11 @@ set -g prefix C-a
 bind C-a send-prefix
 
 set-environment -g PATH "/usr/local/bin:/bin:/usr/bin:$HOME/.local/bin"
+<<<<<<< HEAD
 set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.config/tmux/plugins"
+=======
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '$HOME/.config/tmux/plugins'
+>>>>>>> stash
 
 # set default shell to zsh
 set-option -g default-shell /bin/zsh

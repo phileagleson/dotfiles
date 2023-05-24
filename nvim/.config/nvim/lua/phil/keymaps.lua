@@ -16,6 +16,7 @@ vim.keymap.set('n', '<leader>n', vim.cmd.Ex, nil)
 
 -- Tmux nav --
 vim.keymap.set('n','<C-f>', "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set({'n','v'},'<leader>q', "<cmd>silent !jqpaste<CR>P:%!jq .<CR>")
 
 -- Make file executable 
 vim.keymap.set('n', '<leader>x',"<cmd>!chmod +x %<CR>", {silent = true})

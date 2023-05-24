@@ -37,15 +37,6 @@
   "nvim-ts-rainbow": { "branch": "master", "commit": "ef95c15a935f97c65a80e48e12fe72d49aacf9b9" },
   "nvim-web-devicons": { "branch": "master", "commit": "e283ab937e0197b37ec5d8013e49495193407324" },
   "onedark.nvim": { "branch": "master", "commit": "f6e82074761473d30a722f5d90c60282de1ac41d" },
-=======
-  "nvim-lspconfig": { "branch": "master", "commit": "eddaef928c1e1dd79a96f5db45f2fd7f2efe7ea0" },
-  "nvim-treesitter": { "branch": "master", "commit": "b0338a056525e83d88aaa76e8cf396af07410bed" },
-  "nvim-treesitter-context": { "branch": "master", "commit": "8b6861ebf0ba88e5f57796372eb194787705d25a" },
-  "nvim-treesitter-textobjects": { "branch": "master", "commit": "8673926519ea61069f9c1366d1ad1949316d250e" },
-  "nvim-ts-rainbow": { "branch": "master", "commit": "ef95c15a935f97c65a80e48e12fe72d49aacf9b9" },
-  "nvim-web-devicons": { "branch": "master", "commit": "4ec26d67d419c12a4abaea02f1b6c57b40c08d7e" },
-  "onedark.nvim": { "branch": "master", "commit": "d20f23c0d6810c8754737428771eef40bd1056a7" },
->>>>>>> stash
   "playground": { "branch": "master", "commit": "2b81a018a49f8e476341dfcb228b7b808baba68b" },
   "plenary.nvim": { "branch": "master", "commit": "6aeb98daac98ade8346e107b3eef47c5eaf1ffdb" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },

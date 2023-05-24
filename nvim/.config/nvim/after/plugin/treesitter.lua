@@ -16,7 +16,7 @@ require 'nvim-treesitter.configs'.setup {
  },
  ensure_installed = 'all',
  sync_install = false,
- ignore_install = { 'smali' },
+ ignore_install = { 'smali','t32' },
  highlight = {
   enable = true
  },
