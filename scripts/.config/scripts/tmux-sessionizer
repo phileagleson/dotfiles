@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-session=$(find ~ ~/projects/ ~/data/repos/ -mindepth 1 -maxdepth 1 -type d | fzf)
+session=$(find ~ ~/projects/ ~/projects/SourceControl/Main/Client\ Work/ -mindepth 1 -maxdepth 1 -type d | fzf)
 session_name=$(basename "$session" | tr . _)
+command=""
 
 if ! tmux has-session -t "$session_name" 2>/dev/null; then 
-  tmux new-session -s "$session_name" -c "$session" -d 
+  if [[ $session_name =~ ^[0-9]+*$ ]]; then 
+    command="/home/phil/bin/TEE-CLC-14.137.0/tf get -recursive $session"
+  fi
+  tmux new-session -d -s "$session_name" -c "$session" 
 fi 
 
-tmux switch-client -t "$session_name"
+tmux switch-client -t "$session_name" 

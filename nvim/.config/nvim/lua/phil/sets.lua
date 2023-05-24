@@ -48,6 +48,20 @@ let g:taskwiki_markup_syntax = 'markdown'
 set runtimepath+='~/.config/nvim/queries'
 set path+='~/projects'
 set path+='~/projects/poweron'
+
+let s:xclip = '/bin/xclip'
+let g:clipboard = {
+      \  'name' : 'xclip',
+      \  'copy' : {
+      \    '+' : s:xclip..' -sel clip',
+      \    '*' : s:xclip..' -sel clip',
+      \  },
+      \  'paste' : {
+      \    '+' : s:xclip..' -o -sel clip',
+      \    '*' : s:xclip..' -o -sel clip',
+      \  },
+      \}
+unlet s:xclip
 ]]
 
 --let g:markdown_folding = 1
