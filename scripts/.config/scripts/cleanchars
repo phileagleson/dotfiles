@@ -1,0 +1,20 @@
+#!/usr/bin/env bash 
+
+FILENAME=$1
+
+if [ -z "$FILENAME" ]; then
+  FILELIST=$(find . -type f)
+  for FILE in $FILELIST
+  do
+    echo "Cleaning $FILE"
+    NEWFILENAME=$FILE.clean
+    iconv -f utf-8 -t utf-8 -c $FILE > $NEWFILENAME
+    mv $NEWFILENAME $FILE
+  done
+else 
+  echo "Cleaning $FILENAME"
+  NEWFILENAME=$FILENAME.clean
+  iconv -f utf-8 -t utf-8 -c $FILENAME > $NEWFILENAME
+  mv $NEWFILENAME $FILENAME
+fi
+

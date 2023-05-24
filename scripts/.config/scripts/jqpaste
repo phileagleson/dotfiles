@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+json=$(powershell.exe -c [Console]::Out.Write\(\$\(Get-Clipboard -Raw\).tostring\(\).replace\(\"\`r\", \"\"\)\))
+#formatted=$(echo "$json"|jq)
+echo $json | xclip -sel clip
+

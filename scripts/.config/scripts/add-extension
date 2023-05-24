@@ -1,0 +1,10 @@
+#!/usr/bin/env bash 
+
+ext=$1 
+
+if [ -z "$ext" ]; then
+    echo "Usage: add-extension <extension>"
+    exit 1
+fi
+
+find . -type f -exec mv '{}' '{}'.$ext \;

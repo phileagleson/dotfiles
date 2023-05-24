@@ -1,0 +1,70 @@
+#!/usr/bin/env bash 
+
+products=$(echo "ELA EAR EMA" | tr ' ' '\n')
+product=$(echo -e "$products" | fzf)
+
+read -p "Enter extension: " ext
+read -p "Update json files? (y/n): " update_json
+
+~/.config/scripts/add-extension $ext 
+
+ela_filenames="ELA.ACTBJS.RAW \
+           ELA.ADDRESSVERIFY.PRO \
+           ELA.APPLICANTINFO \
+           ELA.COLLATERAL.DEF \
+           ELA.COMMON.DEF \
+           ELA.COMMON.PRO \
+           ELA.COSIGNER \
+           ELA.CSS \
+           ELA.DATEFORMATJS.RAW \
+           ELA.DECISION \
+           ELA.EFTXFRCREATE \
+           ELA.FUNDINGINSTRUCTIONS \
+           ELA.GENJS.RAW \
+           ELA.INIT \
+           ELA.JAVASCRIPTS.PRO \
+           ELA.LIABILITIES \
+           ELA.LOANCREATE \
+           ELA.LOANFUNDING \
+           ELA.OTHERACTIONS.DEF \
+           ELA.OTHERACTIONS.PRO \
+           ELA.PDF.APPREVIEW \
+           ELA.PDF.APPREVIEW.DEF \
+           ELA.PDF.APPREVIEW.PRO \
+           ELA.PRINTDOCS \
+           ELA.PROJECT \
+           ELA.PULLCRED \
+           ELA.SHOWHIDEJS.RAW \
+           ELA.SSNSEARCH.PRO"
+
+ela_json_files="PS.CONFIG.ELAAPPINFTIERS.json \
+                PS.CONFIG.ELAAPPTYPES.json \
+                PS.CONFIG.ELAAPPVALIDATION.json \
+                PS.CONFIG.ELADOCUMENTS.json \
+                PS.CONFIG.ELAFUNDINGGLS.json \
+                PS.CONFIG.ELAGENERAL.json \
+                PS.CONFIG.ELAMISC.json \
+                PS.CONFIG.ELAOTHERACTIONS.json \
+                PS.CONFIG.ELATIERSIDTYPE.json \
+                PS.CONFIG.ELAUSERS.json \
+                PS.CONFIG.ELAWORKFLOWS.json \"
+
+if [ $product == "ELA" ]; then 
+  for file in $ela_filenames
+  do
+    find ./ -type f -mindepth 1 -maxdepth 1 -exec sed -i "s/\<$file\>/$file.$ext/g" {} \;
+    if [ $update_json == "y" || $update_json == "Y" ]; then
+      for json in $ela_json_files
+      do
+        find ./Data\ Files -type f -mindepth 1 -maxdepth 1 -exec sed -i "s/\<$file\>/$file.$ext/g" {} \;
+      done
+    fi
+  done
+elif [ $product == "EAR" ]; then
+  echo "EAR"
+elif [ $product == "EMA" ]; then
+  echo "EMA"
+else
+  echo "No product selected"
+fi
+

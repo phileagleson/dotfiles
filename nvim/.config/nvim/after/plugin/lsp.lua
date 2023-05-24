@@ -138,8 +138,8 @@ local os = vim.loop.os_uname().sysname
 local cmd = { "" }
 local commonDir = ''
 if os == "Linux" then
-  --cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
-  cmd = { "/home/phil/projects/pols/target/debug/pols"}
+  cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+  --cmd = { "/home/phil/projects/pols/target/debug/pols"}
   --commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.luau_lsp.setup {
     capabilities = capabilities,
