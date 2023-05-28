@@ -134,11 +134,12 @@ require 'lspconfig'.luau_lsp.setup {
 -- }
 local configs = require "lspconfig.configs"
 local util = require 'lspconfig.util'
-local os = vim.loop.os_uname().sysname
+--local os = vim.loop.os_uname().sysname
 local cmd = { "" }
 local commonDir = ''
-if os == "Linux" then
-  cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+local sysname = os.getenv("SYSNAME")
+if (sysname == "archie") then 
+  cmd = { "/home/phil/projects/pols/target/debug/pols"}
   --cmd = { "/home/phil/projects/pols/target/debug/pols"}
   --commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.luau_lsp.setup {
@@ -162,7 +163,8 @@ if os == "Linux" then
     }
   }
 else
-  cmd = { "node", "/home/phil/desktop/poweron-language-server/out/main.js", "--stdio" }
+  cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+  --cmd = { "node", "/home/phil/desktop/poweron-language-server/out/main.js", "--stdio" }
   --commonDir = '/home/phil/desktop/poweron/commonFiles/'
 end
 
