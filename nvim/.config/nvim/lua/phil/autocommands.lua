@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
    if #vim.fn.argv() == 0 then 
      vim.defer_fn(function() 
        vim.cmd("silent! lua require('telescope.builtin').find_files()")
-    end, 500)
+    end, 100)
    end
   end,
 })
