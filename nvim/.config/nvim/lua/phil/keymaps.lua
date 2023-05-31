@@ -6,6 +6,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
 
 -- Navigate Quick fix list
 vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")

@@ -47,6 +47,7 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
   },
+  'stevearc/oil.nvim',
 
   {
   'exafunction/codeium.vim',
