@@ -1,0 +1,20 @@
+configuration{
+    modes: "run,drun,emoji,search:~/.config/rofi/scripts/websearch";
+    //modi: "run,drun,window,emoji,websearch:websearch";
+    icon-theme: "Oranchelo";
+    show-icons: true;
+    terminal: "kitty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps:";
+    display-run: "   Run:";
+    display-window: " Window:";
+    display-emoji: "😃 Emoji:";
+    display-Network: " 󰤨  Network:";
+    sidebar-mode: false;
+}
+
+@theme "catppuccin-mocha"
+

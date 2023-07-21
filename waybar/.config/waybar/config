@@ -1,9 +1,9 @@
 [
 {
-    "height": 35, // Waybar height (to be removed for auto height)
+    "height": 44, 
     "layer": "top",
     "output": "DP-1",
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 4,
     "modules-left": ["wlr/workspaces", "cpu", "memory"],
     "modules-center": ["custom/weather","hyprland/window"],
     "modules-right": ["pulseaudio","pulseaudio#microphone", "custom/brightness","network", "clock", "bluetooth","tray", "custom/logout"],
@@ -49,16 +49,6 @@
         "tooltip-format": "Memory - {used:0.1f}GB used",
         "on-click": "kitty --start-as-fullscreen --title btop sh -c 'btop'"
     },
-//    "custom/brightness": {
-//        "format": "{icon} {}%",
-//        "format-icons": ["", "", ""],
-//        "tooltip":"click to inclease\\nright-click to declease",
-//        "signal": 99,
-//        "on-click": "brightness-up 2",
-//        "on-click-right": "brightness-down 2",
-//        "exec": "get-brightness 2",
-//        "min-length": 6
-//    },
     "network": {
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "Ethernet ",
@@ -124,14 +114,14 @@
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
-    },
+    }
 },
 
 {
-    "height": 35, // Waybar height (to be removed for auto height)
+    "height": 35, 
     "layer": "top",
     "output": "HDMI-A-1",
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 4,
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["clock"],

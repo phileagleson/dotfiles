@@ -12,4 +12,5 @@ swayidle -w \
          timeout 1500 "hyprctl dispatch dpms off DP-1" \
          resume "hyprctl dispatch dpms on DP-1" \
          timeout 1500 "hyprctl dispatch dpms off HDMI-A-1" \
+         timeout 1500 "gpg-connect-agent reloadagent /bye" \
          before-sleep "$LOCKSCRIPT"
