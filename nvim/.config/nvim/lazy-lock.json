@@ -55,5 +55,6 @@
   "vim-mdx-js": { "branch": "master", "commit": "17179d7f2a73172af5f9a8d65b01a3acf12ddd50" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "cdd66d6a37d991bba7997d593586fc51a5b37aa8" },
   "vimwiki": { "branch": "dev", "commit": "cd9cfd299ef148721eaef532021c53da3d595710" }
 }

@@ -1,3 +1,5 @@
+vim.keymap.del('n','<C-H>')
+vim.keymap.set('n', '<C-H>', ':<C-U>TmuxNavigateLeft<cr>',{silent=true, noremap=true})
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -22,15 +24,6 @@ vim.keymap.set({'n','v'},'<leader>q', "<cmd>silent !jqpaste<CR>P:%!jq .<CR>")
 -- Make file executable 
 vim.keymap.set('n', '<leader>x',"<cmd>!chmod +x %<CR>", {silent = true})
 
--- WINDOW NAV
---[[ vim.keymap.set('n', '<c-l>', '<cmd>wincmd l<cr>', nil)
-vim.keymap.set('n', '<c-h>', '<cmd>wincmd h<cr>', nil)
-vim.keymap.set('n', '<c-j>', '<cmd>wincmd j<cr>', nil)
-vim.keymap.set('n', '<c-k>', '<cmd>wincmd k<cr>', nil) ]]
-
-vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>', nil)
-vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>', nil)
-
 -- BUFFER NAV
 vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', nil)
 vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', nil)
@@ -45,3 +38,4 @@ vim.keymap.set('n', '<leader>cd', '<cmd>:cd %:h<cr>', nil) -- change to dir of c
 
 -- CLOSING WINDOWS/TABS/BUFFERS
 vim.keymap.set('n', '<leader>c', '<cmd>clo<cr>', nil) -- won't close last window
+

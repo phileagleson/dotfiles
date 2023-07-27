@@ -11,43 +11,18 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-    --[[ vim.cmd [[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
-augroup end
-]]
-
--- Use a protected call so we don't error out on first use
---[[ local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
-  return
-end ]]
-
--- Have packer use a popup window
---[[ packer.init {
-  max_jobs = 10,
-  display = {
-    open_fn = function()
-      return require('packer.util').float { border = 'rounded' }
-    end,
-  },
-} ]]
-
--- Install your plugins here
---return packer.startup(function(use)
 require('lazy').setup({
-  'nvim-lua/popup.nvim', -- An implementation of the Popup API from vim in Neovim
-  'nvim-lua/plenary.nvim', -- Useful lua functions used ny lots of plugins
+  'nvim-lua/popup.nvim', 
+  'nvim-lua/plenary.nvim', 
   {
     'nvim-treesitter/nvim-treesitter',
-    --build = ":TSUpdate",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     }
   },
   'stevearc/oil.nvim',
+
+  'christoomey/vim-tmux-navigator',
 
   {
   'exafunction/codeium.vim',
@@ -57,27 +32,12 @@ require('lazy').setup({
     vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   },
-  --[[ {
-    "jackMort/ChatGPT.nvim",
-      event = "VeryLazy",
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim",
-      },
-      config = function()
-        require("chatgpt").setup({
-          api_key_cmd = "pass show chatgptapi",
-      })
-      end,
-  }, ]]
-
   'mbbill/undotree',
 
   'nvim-treesitter/nvim-treesitter-context',
   'nvim-treesitter/playground',
   {
-    'windwp/nvim-autopairs', -- Autopairs, integrates with both cmp and treesitter
+    'windwp/nvim-autopairs', 
     config = function() require 'nvim-autopairs'.setup {} end
   },
 
@@ -105,10 +65,8 @@ require('lazy').setup({
 
   'nvim-telescope/telescope-file-browser.nvim',
 
-  -- Grammar Checking
   'rhysd/vim-grammarous',
 
-  -- Native LSP
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
@@ -116,9 +74,6 @@ require('lazy').setup({
     'kosayoda/nvim-lightbulb',
     dependencies = 'antoinemadec/FixCursorHold.nvim'
   },
-  --'williamboman/nvim-lsp-installer',
-
-  -- LSP Autocompletion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',

@@ -1,6 +1,5 @@
 configuration{
-    modes: "run,drun,emoji,search:~/.config/rofi/scripts/websearch";
-    //modi: "run,drun,window,emoji,websearch:websearch";
+    modi: "drun,window,emoji,websearch:~/.config/rofi/scripts/websearch,run,calc";
     icon-theme: "Oranchelo";
     show-icons: true;
     terminal: "kitty";
@@ -13,8 +12,54 @@ configuration{
     display-window: " Window:";
     display-emoji: "😃 Emoji:";
     display-Network: " 󰤨  Network:";
-    sidebar-mode: false;
+    sidebar-mode: true;
 }
 
 @theme "catppuccin-mocha"
 
+* {
+    bg-col: rgba(30,30,45,0.5);
+    bg-col-semisolid: rgba(30,30,45,0.8);
+    bg-col-solid: rgba(30,30,45,1);
+    bg-col-trans: rgba(30,30,45,0);
+    blue: rgba(137,180,250,0.5);
+}
+
+window {
+    background-color: @bg-col;
+    border-radius: 15px;
+}
+mainbox {
+    background-color: @bg-col;
+}
+
+inputbar {
+    background-color: @bg-col-trans;
+    border-radius: 10px;
+}
+
+prompt {
+    text-color: @bg-col-solid;
+    border-radius: 8px;
+}
+
+entry {
+    background-color: @bg-col-semisolid;
+    border-radius: 8px;
+}
+
+listview {
+    background-color: @bg-col-trans;
+}
+
+element {
+    background-color: @bg-col-trans;
+}
+
+sidebar {
+    background-color: @bg-col-trans;
+}
+
+button {
+    background-color: @bg-col-trans;
+}

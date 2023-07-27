@@ -44,7 +44,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimmwiki_ext2syntax = { '.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_markdown_link_ext = 1
-let g:taskwiki_markup_syntax = 'markdown'
+let g:vimwiki_list = [{'auto_diary_index':1}]
 
 set runtimepath+='~/.config/nvim/queries'
 set path+='~/projects'
