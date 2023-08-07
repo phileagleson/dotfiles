@@ -100,6 +100,11 @@ require 'lspconfig'.svelte.setup {
   on_attach = on_attach,
 }
 
+require 'lspconfig'.html.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 require 'lspconfig'.rust_analyzer.setup {
   capabilities = capabilities,
   on_attach = on_attach,

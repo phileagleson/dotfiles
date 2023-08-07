@@ -2,6 +2,7 @@ if vim.g.snippets == "luasnip" then
   return
 end
 
+require("luasnip.loaders.from_vscode").lazy_load()
 local ls = require 'luasnip'
 --local types = require "luasnip.util.types"
 
@@ -35,4 +36,4 @@ vim.keymap.set("i", "<c-l>", function()
   end
 end)
 
---require('luasnip.loaders.from_lua').lazy_load({ paths = "~/.config/nvim/lua/phil/luasnip/snippets" })
+require('luasnip.loaders.from_lua').lazy_load({ paths = "~/.config/nvim/lua/phil/luasnip/snippets" })

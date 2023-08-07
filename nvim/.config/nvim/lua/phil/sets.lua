@@ -1,8 +1,9 @@
 vim.opt.guicursor = "n-v-i:block"
 
 vim.o.clipboard = 'unnamedplus'
+--vim.o.spell = true
 vim.o.ignorecase = true
-vim.o.syntax = true
+vim.o.syntax = 'on'
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
@@ -37,15 +38,7 @@ vim.opt.undofile = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-
--- vimwiki
 vim.cmd [[
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimmwiki_ext2syntax = { '.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_markdown_link_ext = 1
-let g:vimwiki_list = [{'auto_diary_index':1}]
-
 set runtimepath+='~/.config/nvim/queries'
 set path+='~/projects'
 set path+='~/projects/poweron'

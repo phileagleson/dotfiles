@@ -1,0 +1,24 @@
+#!/usr/bin/env bash 
+
+wallpaper_dir=$1
+
+if [[ -z $wallpaper_dir ]]; then
+  wallpaper_dir=$HOME/Pictures/lwalpapers/wallpapers/
+fi
+
+if [[ ! -d $wallpaper_dir ]]; then
+  echo "Directory $wallpaper_dir does not exist"
+  exit 1
+fi
+
+wallpaper=$(find "$wallpaper_dir" -type f | sort -R | head -1)
+if [[ -z $wallpaper ]]; then
+  echo "No wallpapers found"
+  exit 1
+fi
+echo "$wallpaper"
+hyprctl hyprpaper preload "$wallpaper"
+hyprctl hyprpaper wallpaper "HDMI-A-1,$wallpaper"
+hyprctl hyprpaper wallpaper "DP-1,$wallpaper"
+
+

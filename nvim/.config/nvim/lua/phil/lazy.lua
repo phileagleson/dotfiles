@@ -41,7 +41,6 @@ require('lazy').setup({
     config = function() require 'nvim-autopairs'.setup {} end
   },
 
-  'p00f/nvim-ts-rainbow',
   'folke/todo-comments.nvim',
   'kyazdani42/nvim-web-devicons',
 
@@ -109,10 +108,40 @@ require('lazy').setup({
   -- COLOR PREVIEW
   'norcalli/nvim-colorizer.lua',
 
-  -- VIMWIKI
-  'vimwiki/vimwiki',
+  -- STATUSLINE
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'kyazdani42/nvim-web-devicons' }
+  },
 
-  -- Toggleterm
+  -- comments
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require 'Comment'.setup()
+    end
+  },
+
+  -- COLOR PREVIEW
+  'norcalli/nvim-colorizer.lua',
+
+  -- VIMWIKI
+ {
+    "vimwiki/vimwiki",
+    branch = "dev",
+    init = function()
+      vim.g.vimwiki_global_ext = 0
+      vim.g.vimwiki_list = {
+        {
+          path = "~/vimwiki/",
+          syntax = "markdown",
+          ext = ".md",
+        },
+      }
+    end,
+  },
+   
+ -- Toggleterm
   'akinsho/toggleterm.nvim',
 
   -- Caps Lock for Poweron
