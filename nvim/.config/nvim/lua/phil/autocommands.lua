@@ -42,6 +42,18 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost', 'FileReadPost' }, {
   end,
   group = foldGroup,
 })
+-- Start poweron debugger
+--[[ local debugGroup = vim.api.nvim_create_augroup('Debug', { clear = true })
+vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost', 'FileReadPost' }, {
+  pattern = 'poweron',
+  callback = function()
+    -- find pid of pols process
+    local pid = vim.fn.system("pidof pols")
+    -- start debugger
+    vim.fn.jobstart("dlv dap attach "..pid.." /home/phil/projects/pols/bin/pols --listen 0.0.0.0:2345")
+  end,
+  group = debugGroup,
+}) ]]
 
 -- Open Telescope when opened without arguments
 vim.api.nvim_create_autocmd('VimEnter', {

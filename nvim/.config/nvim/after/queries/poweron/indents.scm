@@ -10,9 +10,11 @@
  (procedure_definition)
  (start_block) 
  (for_statement)
-] @indent
+] @indent.begin
 
 [
-  (end_block)
-] @dedent
+
+(end_block) 
+]@indent.branch
+
 

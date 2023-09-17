@@ -49,6 +49,7 @@ require('lazy').setup({
   'folke/tokyonight.nvim',
   'EdenEast/nightfox.nvim',
   { 'catppuccin/nvim', as = 'catppuccin' },
+  'marko-cerovac/material.nvim',
 
   -- Telescope
   {
@@ -162,6 +163,15 @@ require('lazy').setup({
 
   -- MDX
   'jxnblk/vim-mdx-js',
+
+  {
+    "NStefan002/speedtyper.nvim",
+    branch = "main",
+    cmd = "Speedtyper",
+    opts = {
+    -- your config
+    }
+  },
 
   --[[ if packer_bootstrap then
     require('packer').sync()

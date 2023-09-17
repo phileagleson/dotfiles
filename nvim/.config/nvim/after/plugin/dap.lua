@@ -39,40 +39,25 @@ require 'mason-nvim-dap'.setup {
 
 dap.set_log_level('TRACE')
 
-dap.adapters.delve = {
+dap.adapters.go = {
   type = 'server',
-  port = '${port}',
+  port = "${port}",
   executable = {
     command = 'dlv',
     args = { 'dap', '-l', '127.0.0.1:${port}' },
-  }
+  },
 }
 
 -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
-dap.configurations.go = {
+dap.configurations.poweron = {
   {
-    type = "delve",
-    name = "Debug",
-    request = "launch",
-    program = "${workspaceFolder}"
+    type = "go",
+    name = "Attach to process",
+    request = "attach",
+    mode="local",
+    processId = require("dap.utils").pick_process,
   },
-  {
-    type = "delve",
-    name = "Debug test", -- configuration for debugging test files
-    request = "launch",
-    mode = "test",
-    program = "${file}"
-  },
-  -- works with go.mod packages and sub packages
-  {
-    type = "delve",
-    name = "Debug test (go.mod)",
-    request = "launch",
-    mode = "test",
-    program = "./${relativeFileDirname}"
-  }
 }
-
 -- You NEED to override nvim-dap's default highlight groups, AFTER requiring nvim-dap
 require("dap")
 
