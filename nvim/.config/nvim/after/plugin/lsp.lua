@@ -145,8 +145,8 @@ local cmd = { "" }
 local commonDir = ''
 local sysname = os.getenv("SYSNAME")
 if (sysname == "archie") then 
-  --cmd = { "/home/phil/projects/pols/bin/pols" }
-  cmd = { "node", "/mnt/c/Users/peagleson/Desktop/poweron-language-server/out/main.js", "--stdio" }
+  cmd = { "/home/phil/projects/pols/bin/pols" }
+  --cmd = { "node", "/mnt/c/Users/peagleson/Desktop/poweron-language-server/out/main.js", "--stdio" }
   --commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.luau_lsp.setup {
     capabilities = capabilities,
