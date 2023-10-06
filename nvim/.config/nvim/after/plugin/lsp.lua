@@ -8,7 +8,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local on_attach = function()
+local on_attach = function(current_client, buffnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
   vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', { buffer = 0 })
@@ -20,6 +20,9 @@ local on_attach = function()
   vim.keymap.set('n', '<leader>ws', '<cmd>Telescope lsp_workspace_symbols<cr>', { buffer = 0 })
   vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
   vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { buffer = 0 })
+  if (current_client.name == 'poweronls') then 
+    vim.keymap.set('n', '<F7>', function() handleValidatePoweron(buffnr) end, { buffer = 0 })
+  end
 end
 
 -- must setup in order
@@ -64,6 +67,8 @@ mason_null_ls.setup {
     end
   end
 }
+
+
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -147,7 +152,6 @@ local sysname = os.getenv("SYSNAME")
 if (sysname == "archie") then 
   cmd = { "/home/phil/projects/pols/bin/pols" }
   --cmd = { "node", "/mnt/c/Users/peagleson/Desktop/poweron-language-server/out/main.js", "--stdio" }
-  --commonDir = '/Users/phil/projects/poweron/RDFILES'
   require 'lspconfig'.luau_lsp.setup {
     capabilities = capabilities,
     on_attach = on_attach,
@@ -169,89 +173,109 @@ if (sysname == "archie") then
     }
   }
 else
-  cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
-  --cmd = { "node", "/home/phil/desktop/poweron-language-server/out/main.js", "--stdio" }
+  --cmd = { "node", "/home/phil/projects/poweron-language-server/out/main.js", "--stdio" }
+  cmd = { "/home/phil/projects/pols/bin/pols" }
   --commonDir = '/home/phil/desktop/poweron/commonFiles/'
+end
+
+local symConfigurations = {
+  {
+    name = "SMOPROSVS-SYM700",
+    symNumber = "700",
+    hostname = "https://smoprosvs.jhacorp.com",
+    port = "42700",
+    aixUserName = "peagleson",
+    aixPassword = os.getenv("SMOPROSVS_PASS"),
+    symUserNumber = "0",
+    symPassword = "0",
+    device = os.getenv("HOSTNAME"),
+    deviceIp = os.getenv("HOSTIP"),
+  },
+  {
+    name = "SMOEPIPVC94-SYM777",
+    symNumber = "777",
+    hostname = "https://smoepipvc94.jhacorp.com",
+    port = "42777",
+    aixUserName = "peagleso",
+    aixPassword = os.getenv("SMOPROSVS_PASS"),
+    symUserNumber = "0",
+    symPassword = "Symitar#2",
+    device = os.getenv("HOSTNAME"),
+    deviceIp = os.getenv("HOSTIP"),
+  },
+}
+
+local function handleDataTypeNotification(err,actions,ctx)
+local uri     = ctx['params']['arguments'][1]['uri']
+local varName = ctx['params']['arguments'][1]['varName']
+local bufnr   = ctx.bufnr
+vim.ui.select({
+  "CHARACTER",
+  "CODE",
+  "DATE",
+  "FLOAT",
+  "MONEY",
+  "NUMBER",
+  "RATE"
+}, {
+    prompt = "Choose Data type"
+  }, function(choice)
+    if (choice) then
+      vim.lsp.buf_request(bufnr, 'workspace/executeCommand', {
+        command = 'lsp.addVarToDefine',
+        arguments = {
+          {
+            dataType = choice,
+            varName = varName,
+            uri = uri,
+          },
+        },
+      }, nil)
+    end
+  end)
+end
+
+function handleValidatePoweron(buffnr)
+  local symConfigs = {}
+  for i in pairs(symConfigurations) do
+    symConfigs[i] = symConfigurations[i].name
+  end
+  uri = "file://".. vim.fn.expand("%:p")
+  uri = uri:gsub("%s", "%%20")
+
+  vim.ui.select(symConfigs, {
+    prompt = "Choose Sym"
+  }, function(choice)
+    if (choice) then
+      print("uri",uri)
+      print("choice",choice)
+      vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+        command = 'lsp.validatePoweron',
+        arguments = {
+          {
+           symConfigName = choice,
+           uri = uri,
+          },
+        }
+      }, nil)
+    end
+  end)
 end
 
 local function on_workspace_exec_command(err, actions, ctx)
   if (ctx.params.command == 'poweronlsp.showDataTypeNotification') then
-    local uri     = ctx['params']['arguments'][1]['uri']
-    local varName = ctx['params']['arguments'][1]['varName']
-    local bufnr   = ctx.bufnr
-    vim.ui.select({
-      "CHARACTER",
-      "CODE",
-      "DATE",
-      "FLOAT",
-      "MONEY",
-      "NUMBER",
-      "RATE"
-    }, {
-      prompt = "Choose Data type"
-    }, function(choice)
-      if (choice) then
-        vim.lsp.buf_request(bufnr, 'workspace/executeCommand', {
-          command = 'lsp.addVarToDefine',
-          arguments = {
-            {
-              uri = uri,
-              varName = varName,
-              dataType = choice
-            }
-          }
-        }, nil)
-      end
-    end)
+    handleDataTypeNotification(err, actions, ctx)
+  --[[ elseif (ctx.params.command == 'poweronlsp.validatePoweron') then
+    handleValidatePoweron(err, actions, ctx)    ]]
   end
 
   handlers[ctx.method](err, actions, ctx)
-end
-
-local function startProcess(processName)
-  local startCmd = string.format("nohup %s &", processName)
-  local startJob = vim.fn.jobstart(startCmd, {
-    on_exit = function(job_id, exit_code, _)
-      if exit_code == 0 then
-        vim.api.nvim_out_write(string.format("Started process '%s'\n", processName))
-        local co = coroutine.create(function()
-          vim.api.nvim_out_write("Process started, pausing for 1 second\n")
-          vim.wait(1000)
-          vim.api.nvim_out_write("Pause completed\n")
-        end)
-        coroutine.resume(co)
-      else
-        vim.api.nvim_out_write("Failed to start process\n")
-      end
-    end,
-  })
-end
-
-local function startPolsLsp(processName)
-    local cmd = string.format("ps aux | grep -v grep | grep '%s'", processName)
-    local job_id = vim.fn.jobstart(cmd, {
-        stdout_buffered = true,
-        stderr_buffered = true,
-        on_exit = function(job_id, exit_code, _)
-            if exit_code == 0 then
-            else
-                startProcess('/home/phil/projects/pols/pols')
-            end
-        end,
-    })
-    vim.fn.jobwait({ job_id }, -1)
 end
 
 
 configs["poweronls"] = {
   default_config = {
     cmd = cmd,
-    --[[ cmd = function()
-      startPolsLsp("pols")
-      return vim.lsp.rpc.connect('127.0.0.1',1234)()
-    end, ]]
-    --root_dir = util.root_pattern('.git'),
-    --root_dir = vim.loop.cwd(),
     root_dir = function()
       return vim.loop.cwd()
     end,
@@ -263,14 +287,16 @@ configs["poweronls"] = {
   },
 }
 
+
 require 'lspconfig'["poweronls"].setup {
   on_attach = on_attach,
   --flags = lsp_flags,
   capabilities = capabilities,
-  --[[ settings = {
-    commonFilesDirectory = commonDir
-  }, ]]
+  settings = {
+    symConfigurations = symConfigurations,
+  },
 }
 
-vim.lsp.set_log_level("info")
+
+vim.lsp.set_log_level("debug")
 
