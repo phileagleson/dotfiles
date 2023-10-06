@@ -11,10 +11,20 @@ require('telescope').setup {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown()
     },
+    file_browser = {
+      theme = "ivy",
+      hijack_netrw = true,
+    }
+  },
+  pickers = {
+    neovim_lsp = {
+     include_current_line = true,
+    },
   },
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('file_browser')
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()

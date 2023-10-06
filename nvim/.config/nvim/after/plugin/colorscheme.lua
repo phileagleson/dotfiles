@@ -1,5 +1,5 @@
 -- CATPPUCCIN --
---[[ require('catppuccin').setup({
+require('catppuccin').setup({
   flavour = "macchiato",
   transparent_background = 'true',
   integrations = {
@@ -11,9 +11,10 @@
       enable_ui = true,
     }
   }
-}) ]]
+})
 
-require('material').setup({
+vim.api.nvim_command 'colorscheme catppuccin'
+--[[ require('material').setup({
   plugins = {
     "dap",
     "gitsigns",
@@ -30,7 +31,7 @@ require('material').setup({
 })
 
 vim.g.material_style = "deep ocean"
-vim.api.nvim_command 'colorscheme material'
+vim.api.nvim_command 'colorscheme material' ]]
 
 
 -- TOKYONIGHT --

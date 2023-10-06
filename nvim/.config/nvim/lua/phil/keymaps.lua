@@ -15,7 +15,12 @@ vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 
 -- Tree --
-vim.keymap.set('n', '<leader>n', vim.cmd.Ex, nil)
+vim.keymap.set(
+  'n', 
+  '<leader>n', 
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  {noremap=true}
+)
 
 -- Tmux nav --
 vim.keymap.set('n','<C-f>', "<cmd>silent !tmux neww tmux-sessionizer<CR>")

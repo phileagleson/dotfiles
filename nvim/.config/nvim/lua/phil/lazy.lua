@@ -65,11 +65,11 @@ require('lazy').setup({
 
   'nvim-telescope/telescope-file-browser.nvim',
 
-  'rhysd/vim-grammarous',
-
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
+
+  -- Not sure if this is still needed
   {
     'kosayoda/nvim-lightbulb',
     dependencies = 'antoinemadec/FixCursorHold.nvim'
@@ -96,14 +96,6 @@ require('lazy').setup({
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' }
-  },
-
-  -- comments
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require 'Comment'.setup()
-    end
   },
 
   -- COLOR PREVIEW
@@ -155,25 +147,9 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   'lewis6991/gitsigns.nvim',
-  -- vim surround
   'tpope/vim-surround',
-  -- PLUGINS I'M WORKING ON
-  --    '~/projects/poweron-nvim',
   'theprimeagen/harpoon',
 
-  -- MDX
-  'jxnblk/vim-mdx-js',
+  'rcarriga/nvim-notify',
 
-  {
-    "NStefan002/speedtyper.nvim",
-    branch = "main",
-    cmd = "Speedtyper",
-    opts = {
-    -- your config
-    }
-  },
-
-  --[[ if packer_bootstrap then
-    require('packer').sync()
-  end ]]
 })

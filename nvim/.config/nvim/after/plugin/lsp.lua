@@ -11,7 +11,12 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local on_attach = function(current_client, buffnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-  vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', { buffer = 0 })
+  vim.keymap.set(
+    'n', 
+    'gr', 
+    ':lua require("telescope.builtin").lsp_references({include_current_line=true})<cr>', 
+    { buffer = 0 }
+  )
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
   vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { buffer = 0 })
@@ -45,7 +50,7 @@ require 'mason-lspconfig'.setup {
   ensure_installed = {},
   automatic_installation = false,
 }
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+--[[ local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 mason_null_ls.setup {
   ensure_installed = {},
   on_attach = function(current_client, bufnr)
@@ -66,7 +71,7 @@ mason_null_ls.setup {
       })
     end
   end
-}
+} ]]
 
 
 require 'lspconfig'.emmet_ls.setup {
@@ -242,9 +247,10 @@ function handleValidatePoweron(buffnr)
   end
   uri = "file://".. vim.fn.expand("%:p")
   uri = uri:gsub("%s", "%%20")
+  uri = uri:gsub("\\", "/")
 
   vim.ui.select(symConfigs, {
-    prompt = "Choose Sym"
+    prompt = "Validate PowerOn - Choose Sym"
   }, function(choice)
     if (choice) then
       print("uri",uri)
@@ -265,8 +271,6 @@ end
 local function on_workspace_exec_command(err, actions, ctx)
   if (ctx.params.command == 'poweronlsp.showDataTypeNotification') then
     handleDataTypeNotification(err, actions, ctx)
-  --[[ elseif (ctx.params.command == 'poweronlsp.validatePoweron') then
-    handleValidatePoweron(err, actions, ctx)    ]]
   end
 
   handlers[ctx.method](err, actions, ctx)
