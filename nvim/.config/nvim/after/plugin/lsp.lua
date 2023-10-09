@@ -14,9 +14,8 @@ local on_attach = function(current_client, buffnr)
   vim.keymap.set(
     'n', 
     'gr', 
-    --':lua require("telescope.builtin").lsp_references({include_current_line=true})<cr>', 
     function() require("telescope.builtin").lsp_references({include_current_line=true}) end,
-    { buffer = 0 }
+    { buffer = 0 },
   )
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
@@ -27,7 +26,8 @@ local on_attach = function(current_client, buffnr)
   vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
   vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { buffer = 0 })
   if (current_client.name == 'poweronls') then 
-    vim.keymap.set('n', '<F7>', function() handleValidatePoweron(buffnr) end, { buffer = 0 })
+    vim.keymap.set('n', '<F7>', function() handleValidatePoweron(buffnr) end, { buffer = 0, silent = true })
+    vim.keymap.set('n', '<F8>', function() handleInstallPoweron(buffnr) end, { buffer = 0, silent = true })
   end
 end
 
@@ -51,12 +51,12 @@ require 'mason-lspconfig'.setup {
   ensure_installed = {},
   automatic_installation = false,
 }
+
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   --filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'astro' }
 }
-
 
 require 'lspconfig'.gopls.setup {
   capabilities = capabilities,
@@ -227,10 +227,34 @@ function handleValidatePoweron(buffnr)
     prompt = "Validate PowerOn - Choose Sym"
   }, function(choice)
     if (choice) then
-      print("uri",uri)
-      print("choice",choice)
       vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
         command = 'lsp.validatePoweron',
+        arguments = {
+          {
+           symConfigName = choice,
+           uri = uri,
+          },
+        }
+      }, nil)
+    end
+  end)
+end
+
+function handleInstallPoweron(buffnr)
+  local symConfigs = {}
+  for i in pairs(symConfigurations) do
+    symConfigs[i] = symConfigurations[i].name
+  end
+  uri = "file://".. vim.fn.expand("%:p")
+  uri = uri:gsub("%s", "%%20")
+  uri = uri:gsub("\\", "/")
+
+  vim.ui.select(symConfigs, {
+    prompt = "Install PowerOn - Choose Sym"
+  }, function(choice)
+    if (choice) then
+      vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+        command = 'lsp.installPoweron',
         arguments = {
           {
            symConfigName = choice,
@@ -258,6 +282,14 @@ local severity = {
   "info",
 }
 vim.notify(actions.message, severity[actions.type])
+end
+
+local function on_publish_diagnostics(err, actions, ctx)
+  print("err",vim.inspect(err))
+  print("actions",vim.inspect(actions))
+  print("ctx",vim.inspect(ctx))
+  ctx.result='success'
+  handlers[ctx.method](err, actions, ctx)
 end
 
 configs["poweronls"] = {
