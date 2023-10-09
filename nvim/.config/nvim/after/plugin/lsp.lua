@@ -15,7 +15,7 @@ local on_attach = function(current_client, buffnr)
     'n', 
     'gr', 
     ':lua require("telescope.builtin").lsp_references({include_current_line=true})<cr>', 
-    { buffer = 0 }
+    { buffer = 0, silent = true }
   )
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
@@ -26,7 +26,8 @@ local on_attach = function(current_client, buffnr)
   vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>', { buffer = 0 })
   vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { buffer = 0 })
   if (current_client.name == 'poweronls') then 
-    vim.keymap.set('n', '<F7>', function() handleValidatePoweron(buffnr) end, { buffer = 0 })
+    vim.keymap.set('n', '<F7>', function() handleValidatePoweron(buffnr) end, { buffer = 0, silent = true })
+    vim.keymap.set('n', '<F8>', function() handleInstallPoweron(buffnr) end, { buffer = 0, silent = true })
   end
 end
 
@@ -50,29 +51,6 @@ require 'mason-lspconfig'.setup {
   ensure_installed = {},
   automatic_installation = false,
 }
---[[ local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-mason_null_ls.setup {
-  ensure_installed = {},
-  on_attach = function(current_client, bufnr)
-    if current_client.supports_method('textDocument/formatting') then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({
-            filter = function(client)
-              -- only use null-ls for formatting instead fo lsp server
-              return client.name == 'null-ls'
-            end,
-            buffnr = bufnr,
-          })
-        end,
-      })
-    end
-  end
-} ]]
-
 
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
@@ -253,10 +231,34 @@ function handleValidatePoweron(buffnr)
     prompt = "Validate PowerOn - Choose Sym"
   }, function(choice)
     if (choice) then
-      print("uri",uri)
-      print("choice",choice)
       vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
         command = 'lsp.validatePoweron',
+        arguments = {
+          {
+           symConfigName = choice,
+           uri = uri,
+          },
+        }
+      }, nil)
+    end
+  end)
+end
+
+function handleInstallPoweron(buffnr)
+  local symConfigs = {}
+  for i in pairs(symConfigurations) do
+    symConfigs[i] = symConfigurations[i].name
+  end
+  uri = "file://".. vim.fn.expand("%:p")
+  uri = uri:gsub("%s", "%%20")
+  uri = uri:gsub("\\", "/")
+
+  vim.ui.select(symConfigs, {
+    prompt = "Install PowerOn - Choose Sym"
+  }, function(choice)
+    if (choice) then
+      vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+        command = 'lsp.installPoweron',
         arguments = {
           {
            symConfigName = choice,
@@ -276,6 +278,13 @@ local function on_workspace_exec_command(err, actions, ctx)
   handlers[ctx.method](err, actions, ctx)
 end
 
+local function on_publish_diagnostics(err, actions, ctx)
+  print("err",vim.inspect(err))
+  print("actions",vim.inspect(actions))
+  print("ctx",vim.inspect(ctx))
+  ctx.result='success'
+  handlers[ctx.method](err, actions, ctx)
+end
 
 configs["poweronls"] = {
   default_config = {
@@ -286,7 +295,7 @@ configs["poweronls"] = {
     filetypes = { "poweron" },
     autostart = true,
     handlers = {
-      ['workspace/executeCommand'] = on_workspace_exec_command
+      ['workspace/executeCommand'] = on_workspace_exec_command,
     }
   },
 }
