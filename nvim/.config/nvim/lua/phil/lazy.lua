@@ -150,6 +150,5 @@ require('lazy').setup({
   'tpope/vim-surround',
   'theprimeagen/harpoon',
 
-  'rcarriga/nvim-notify',
-
+    "rcarriga/nvim-notify",
 })

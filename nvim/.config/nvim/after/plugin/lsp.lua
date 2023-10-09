@@ -14,7 +14,8 @@ local on_attach = function(current_client, buffnr)
   vim.keymap.set(
     'n', 
     'gr', 
-    ':lua require("telescope.builtin").lsp_references({include_current_line=true})<cr>', 
+    --':lua require("telescope.builtin").lsp_references({include_current_line=true})<cr>', 
+    function() require("telescope.builtin").lsp_references({include_current_line=true}) end,
     { buffer = 0 }
   )
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
@@ -50,30 +51,6 @@ require 'mason-lspconfig'.setup {
   ensure_installed = {},
   automatic_installation = false,
 }
---[[ local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-mason_null_ls.setup {
-  ensure_installed = {},
-  on_attach = function(current_client, bufnr)
-    if current_client.supports_method('textDocument/formatting') then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({
-            filter = function(client)
-              -- only use null-ls for formatting instead fo lsp server
-              return client.name == 'null-ls'
-            end,
-            buffnr = bufnr,
-          })
-        end,
-      })
-    end
-  end
-} ]]
-
-
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -145,9 +122,6 @@ require 'lspconfig'.luau_lsp.setup {
   }
 }
 
--- local lsp_flags = {
---  debounce_text_changes = 150
--- }
 local configs = require "lspconfig.configs"
 local util = require 'lspconfig.util'
 --local os = vim.loop.os_uname().sysname
@@ -276,6 +250,15 @@ local function on_workspace_exec_command(err, actions, ctx)
   handlers[ctx.method](err, actions, ctx)
 end
 
+local function on_show_message(err, actions, ctx)
+local severity = {
+  "error",
+  "warn",
+  "info",
+  "info",
+}
+vim.notify(actions.message, severity[actions.type])
+end
 
 configs["poweronls"] = {
   default_config = {
@@ -286,7 +269,8 @@ configs["poweronls"] = {
     filetypes = { "poweron" },
     autostart = true,
     handlers = {
-      ['workspace/executeCommand'] = on_workspace_exec_command
+      ['workspace/executeCommand'] = on_workspace_exec_command,
+      ['window/showMessage'] = on_show_message,
     }
   },
 }
@@ -294,7 +278,6 @@ configs["poweronls"] = {
 
 require 'lspconfig'["poweronls"].setup {
   on_attach = on_attach,
-  --flags = lsp_flags,
   capabilities = capabilities,
   settings = {
     symConfigurations = symConfigurations,
@@ -302,5 +285,5 @@ require 'lspconfig'["poweronls"].setup {
 }
 
 
-vim.lsp.set_log_level("debug")
+--vim.lsp.set_log_level("debug")
 
