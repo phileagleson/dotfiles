@@ -11,12 +11,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local on_attach = function(current_client, buffnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = 0 })
-  vim.keymap.set(
-    'n', 
-    'gr', 
-    function() require("telescope.builtin").lsp_references({include_current_line=true}) end,
-    { buffer = 0 },
-  )
+  vim.keymap.set( 'n', 'gr', function() require("telescope.builtin").lsp_references({include_current_line=true}) end, { buffer = 0 })
   vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
   vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, { buffer = 0 })
