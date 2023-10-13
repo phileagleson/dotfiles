@@ -43,3 +43,35 @@ vim.keymap.set('n', '<leader>sd', '<cmd>Telescope diagnostics<cr>', { desc = '[S
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 
 require("telescope").load_extension("ui-select")
+
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local conf = require("telescope.config").values
+local actions = require("telescope.actions")
+local action_utils = require("telescope.actions.utils")
+local action_state = require("telescope.actions.state")
+
+
+my_custom_picker = function(opts, items, callback)
+  opts = opts or {}
+  selected = pickers.new(opts, {
+    prompt_title = opts.title,
+    finder = finders.new_table {
+      results = items 
+    },
+    sorter = conf.generic_sorter(opts),
+    attach_mappings = function(prompt_bufnr, map)
+      actions.select_default:replace(function()
+        local results = {}
+        local current = action_state.get_current_picker(prompt_bufnr)
+        for _, item in ipairs(current:get_multi_selection()) do
+          table.insert(results, item)
+        end
+        actions.close(prompt_bufnr)
+        callback(results)
+      end)
+      return true
+    end,
+  }):find()
+end
+

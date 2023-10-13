@@ -1,5 +1,5 @@
 -- CATPPUCCIN --
-require('catppuccin').setup({
+--[[ require('catppuccin').setup({
   flavour = "macchiato",
   transparent_background = 'true',
   integrations = {
@@ -11,9 +11,16 @@ require('catppuccin').setup({
       enable_ui = true,
     }
   }
-})
+}) ]]
 
-vim.api.nvim_command 'colorscheme catppuccin'
+-- ONEDARK
+require('onedark').setup{
+  style='darker',
+  transparent = true,
+}
+
+
+vim.api.nvim_command 'colorscheme onedark'
 --[[ require('material').setup({
   plugins = {
     "dap",

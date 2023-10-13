@@ -23,9 +23,16 @@ local on_attach = function(current_client, buffnr)
   if (current_client.name == 'poweronls') then 
     vim.keymap.set('n', '<F7>', function() handleValidatePoweron(buffnr) end, { buffer = 0, silent = true })
     vim.keymap.set('n', '<F8>', function() handleInstallPoweron(buffnr) end, { buffer = 0, silent = true })
+
+    vim.api.nvim_buf_create_user_command(buffnr, "PoweronDeploy", function() handleDeployPoweron(buffnr) end, {})
+    vim.api.nvim_buf_create_user_command(buffnr, "PoweronInstall", function() handleInstallPoweron(buffnr) end, {})
+    vim.api.nvim_buf_create_user_command(buffnr, "PoweronValidate", function() handleValidatePoweron(buffnr) end, {})
+    vim.api.nvim_buf_create_user_command(buffnr, "PoweronImport", function() getPoweronList(buffnr) end, {})
   end
 end
 
+--vim.api.nvim_buf_create_user_command(0,"DeployPoweron", function() print("hi") end, {})
+--vim.api.nvim_create_user_command("DeployPoweron", function() print("hi") end, {})
 -- must setup in order
 -- 1. mason.nvim
 -- 2. mason-lspconfig.nvim
@@ -50,7 +57,7 @@ require 'mason-lspconfig'.setup {
 require 'lspconfig'.emmet_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  --filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'astro' }
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less', 'astro', 'poweron' }
 }
 
 require 'lspconfig'.gopls.setup {
@@ -261,8 +268,144 @@ function handleInstallPoweron(buffnr)
   end)
 end
 
+function handleDeployPoweron(buffnr)
+  local symConfigs = {}
+  for i in pairs(symConfigurations) do
+    symConfigs[i] = symConfigurations[i].name
+  end
+  uri = "file://".. vim.fn.expand("%:p")
+  uri = uri:gsub("%s", "%%20")
+  uri = uri:gsub("\\", "/")
+
+  my_custom_picker(opts, symConfigs, function(results)
+    selected = {}
+    for _, res in ipairs(results) do
+      for _, item in ipairs(res) do
+        table.insert(selected, item)
+      end
+    end
+
+    if (#selected == 0) then
+      return
+    end
+
+      vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+        command = 'lsp.deployPoweron',
+        arguments = {
+          {
+           deployToSyms = selected,
+           uri = uri,
+          },
+        }
+      }, nil)
+  end)
+
+
+  --[[ vim.ui.select(symConfigs, {
+    prompt = "Deploy PowerOn - Choose Sym"
+  }, function(choice)
+    if (choice) then
+      vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+        command = 'lsp.deployPoweron',
+        arguments = {
+          {
+           symConfigName = choice,
+           uri = uri,
+          },
+        }
+      }, nil)
+    end
+  end) ]]
+end
+
+
+local function selectPoweron(poweronList, symConfigName)
+  local opts = {
+    require("telescope.themes").get_dropdown{},
+    title = "Choose Poweron(s)",
+  }
+
+  my_custom_picker(opts, poweronList, function(results)
+    selected = {}
+    for _, res in ipairs(results) do
+      for _, item in ipairs(res) do
+        table.insert(selected, item)
+      end
+    end
+
+    if (#selected == 0) then
+      return
+    end
+
+    vim.lsp.buf_request(bufnr, 'workspace/executeCommand', {
+      command = 'lsp.importPowerons',
+      arguments = {
+        {
+         symConfigName = symConfigName,
+         poweronList = selected
+        }
+      }
+    })
+  end)
+  --[[ vim.ui.select(poweronList, {
+    prompt = "Select Poweron"
+  }, function(choice)
+    if (choice) then
+      vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+        command = 'lsp.importPowerons',
+        arguments = {
+          {
+           symConfigName = symConfigName,
+           poweron = choice
+          },
+        }
+      })
+    end
+  end) ]]
+end
+
+function getPoweronList(buffnr)
+  local symConfigs = {}
+  for i in pairs(symConfigurations) do
+    symConfigs[i] = symConfigurations[i].name
+  end
+  uri = "file://".. vim.fn.expand("%:p")
+  uri = uri:gsub("%s", "%%20")
+  uri = uri:gsub("\\", "/")
+
+  vim.ui.select(symConfigs, {
+    prompt = "Import PowerOn - Choose Sym"
+  }, function(configChoice)
+    if (configChoice) then
+        vim.ui.input({ prompt = "Search (*=any string, ?=any char):" }, function(searchString)
+            vim.lsp.buf_request(buffnr, 'workspace/executeCommand', {
+                command = 'lsp.getPoweronList',
+                arguments = {
+                    {
+                        searchFilter = searchString,
+                        symConfigName = configChoice,
+                    }
+                }
+            }, function(err, res, ctx)
+              if (err) then
+                vim.notify(err.message, vim.log.levels.ERROR)
+                return
+              end
+              poweronList = res["TaskManager_PowerOnList"]["poweronList"]
+              if (poweronList == nil) then
+                vim.notify("No PowerOn found", vim.log.levels.ERROR)
+                return
+              end
+              selectPoweron(poweronList, configChoice)
+            end)
+        end)
+    end
+  end)
+end
+
+
 local function on_workspace_exec_command(err, actions, ctx)
-  if (ctx.params.command == 'poweronlsp.showDataTypeNotification') then
+  if (ctx.params.command == 'poweron.showDataTypeNotification') then
     handleDataTypeNotification(err, actions, ctx)
   end
 
@@ -277,14 +420,6 @@ local severity = {
   "info",
 }
 vim.notify(actions.message, severity[actions.type])
-end
-
-local function on_publish_diagnostics(err, actions, ctx)
-  print("err",vim.inspect(err))
-  print("actions",vim.inspect(actions))
-  print("ctx",vim.inspect(ctx))
-  ctx.result='success'
-  handlers[ctx.method](err, actions, ctx)
 end
 
 configs["poweronls"] = {
@@ -312,5 +447,5 @@ require 'lspconfig'["poweronls"].setup {
 }
 
 
---vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("debug")
 

@@ -150,5 +150,10 @@ require('lazy').setup({
   'tpope/vim-surround',
   'theprimeagen/harpoon',
 
-    "rcarriga/nvim-notify",
+  "rcarriga/nvim-notify",
+  { 'j-hui/fidget.nvim', tag = 'legacy', opts = {
+    window = { blend = 80,},
+    fmt = { max_width = 80, },
+  } },
+  'folke/neodev.nvim',
 })
