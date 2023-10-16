@@ -156,4 +156,6 @@ require('lazy').setup({
     fmt = { max_width = 80, },
   } },
   'folke/neodev.nvim',
+
+  'rebelot/kanagawa.nvim'
 })
