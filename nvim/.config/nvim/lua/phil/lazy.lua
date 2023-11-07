@@ -48,7 +48,7 @@ require('lazy').setup({
   'navarasu/onedark.nvim',
   'folke/tokyonight.nvim',
   'EdenEast/nightfox.nvim',
-  { 'catppuccin/nvim', as = 'catppuccin' },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   'marko-cerovac/material.nvim',
 
   -- Telescope
@@ -119,7 +119,7 @@ require('lazy').setup({
   'norcalli/nvim-colorizer.lua',
 
   -- VIMWIKI
- {
+ --[[ {
     "vimwiki/vimwiki",
     branch = "dev",
     init = function()
@@ -132,6 +132,27 @@ require('lazy').setup({
         },
       }
     end,
+  }, ]]
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {}, -- Loads default behaviour
+          ["core.concealer"] = {}, -- Adds pretty icons to your documents
+          ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = "~/notes",
+              },
+              default_workspace = "notes",
+            },
+          },
+        },
+      }
+    end,
   },
    
  -- Toggleterm
@@ -140,8 +161,8 @@ require('lazy').setup({
   -- Caps Lock for Poweron
   'barklan/capslock.nvim',
 
-  'jose-elias-alvarez/null-ls.nvim',
-  'jayp0521/mason-null-ls.nvim',
+  --[[ 'jose-elias-alvarez/null-ls.nvim',
+  'jayp0521/mason-null-ls.nvim', ]]
 
   -- Git
   'tpope/vim-fugitive',

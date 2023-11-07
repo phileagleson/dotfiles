@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost', 'FileReadPost', 'VimEnt
 })
 
 -- Open Telescope when opened without arguments
-vim.api.nvim_create_autocmd('VimEnter', {
+--[[ vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
    if #vim.fn.argv() == 0 then 
      vim.defer_fn(function() 
@@ -52,4 +52,4 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end, 100)
    end
   end,
-})
+}) ]]

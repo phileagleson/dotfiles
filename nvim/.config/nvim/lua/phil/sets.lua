@@ -66,9 +66,9 @@ end
 -- glow
 vim.g.glow_binary_path = vim.env.HOME .. "/bin"
 
+vim.g.ruby_host_prog ='~/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
+
 -- disable unused providers
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
 vim.g.do_filetype_lua = 1
 
 -- vim.g.loaded_netrw = 1

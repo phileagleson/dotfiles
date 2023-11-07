@@ -44,3 +44,18 @@ vim.keymap.set('n', '<leader>cd', '<cmd>:cd %:h<cr>', nil) -- change to dir of c
 -- CLOSING WINDOWS/TABS/BUFFERS
 vim.keymap.set('n', '<leader>c', '<cmd>clo<cr>', nil) -- won't close last window
 
+vim.api.nvim_set_keymap('v', '<Leader>y', [[:lua YankMatchesToRegister('a', vim.fn.line("'<"), vim.fn.line("'>"))<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>p', ':lua vim.cmd("normal! \\"ap")<CR>', { noremap = true, silent = true })
+
+function YankMatchesToRegister(register,start_line, end_line)
+    local result = {}
+
+    for line = start_line, end_line do
+        local text = vim.fn.getline(line)
+        local match = text:match('"([^"]+)"')
+        if match then
+            table.insert(result, match)
+        end
+    end
+  vim.fn.setreg(register,table.concat(result, '\n'))
+end

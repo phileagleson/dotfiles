@@ -1,4 +1,4 @@
--- KANAGAWA
+--[[ -- KANAGAWA
 require("kanagawa").setup({
   dimInactive = true,
   theme = "dragon",
@@ -36,12 +36,23 @@ require("kanagawa").setup({
   end
 })
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme kanagawa") ]]
+
 -- CATPPUCCIN --
---[[ require('catppuccin').setup({
-  flavour = "macchiato",
-  transparent_background = 'true',
+require('catppuccin').setup({
+  --flavour = "macchiato",
+  flavour = "mocha",
+  transparent_background = false,
+  dim_inactive = {
+    enabled = true,
+    shade = "dark",
+    percentage = 0.15,
+  },
   integrations = {
+    cmp = true,
+    gitsigns = true,
+    nvimtree = true,
+    notify = true,
     telescope=true,
     harpoon=true,
     treesitter=true,
@@ -50,7 +61,9 @@ vim.cmd("colorscheme kanagawa")
       enable_ui = true,
     }
   }
-}) ]]
+}) 
+
+vim.cmd("colorscheme catppuccin") 
 
 -- ONEDARK
 --[[ require('onedark').setup{

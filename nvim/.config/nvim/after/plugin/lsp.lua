@@ -1,10 +1,4 @@
-local mason_null_ls_status, mason_null_ls = pcall(require, 'mason-null-ls')
 local handlers = require 'vim.lsp.handlers'
---local popup = require('plenary.popup')
-
-if not mason_null_ls_status then
-  print("Error loading mason-null-ls.. is it installed?")
-end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -447,5 +441,5 @@ require 'lspconfig'["poweronls"].setup {
 }
 
 
-vim.lsp.set_log_level("debug")
+--vim.lsp.set_log_level("debug")
 
