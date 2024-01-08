@@ -1,0 +1,22 @@
+#!/usr/bin/env bash 
+
+sleep 1
+CURRENT_WP=$(cat ~/.current_wallpaper)
+
+if [[ -z $CURRENT_WP ]]; then
+  if [[ -z $wallpaper_dir ]]; then
+    wallpaper_dir=$HOME/Pictures/lwalpapers/wallpapers/
+  fi
+
+  if [[ ! -d $wallpaper_dir ]]; then
+    echo "Directory $wallpaper_dir does not exist"
+    exit 1
+  fi
+
+  CURRENT_WP=$(find "$wallpaper_dir" -type f | sort -R | head -1)
+fi
+
+hyprctl hyprpaper preload "$CURRENT_WP"
+hyprctl hyprpaper wallpaper "HDMI-A-1,$CURRENT_WP"
+hyprctl hyprpaper wallpaper "DP-1,$CURRENT_WP"
+hyprctl hyprpaper unload all

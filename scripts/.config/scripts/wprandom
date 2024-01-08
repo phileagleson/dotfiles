@@ -1,24 +1,48 @@
 #!/usr/bin/env bash 
 
-wallpaper_dir=$1
-
-if [[ -z $wallpaper_dir ]]; then
-  wallpaper_dir=$HOME/Pictures/lwalpapers/wallpapers/
-fi
+wallpaper=$1
+wallpaper_dir=$HOME/Pictures/lwalpapers/wallpapers/
 
 if [[ ! -d $wallpaper_dir ]]; then
   echo "Directory $wallpaper_dir does not exist"
   exit 1
 fi
 
-wallpaper=$(find "$wallpaper_dir" -type f | sort -R | head -1)
 if [[ -z $wallpaper ]]; then
-  echo "No wallpapers found"
-  exit 1
+  wallpaper=$(find "$wallpaper_dir" -type f | sort -R | head -1)
+  if [[ -z $wallpaper ]]; then
+    echo "No wallpapers found"
+    exit 1
+  fi
 fi
-echo "$wallpaper"
+
+echo "$wallpaper" > ~/.current_wallpaper
+
 hyprctl hyprpaper preload "$wallpaper"
 hyprctl hyprpaper wallpaper "HDMI-A-1,$wallpaper"
 hyprctl hyprpaper wallpaper "DP-1,$wallpaper"
 hyprctl hyprpaper unload all
 
+wal -i "$wallpaper"
+
+# Generate GTK theme
+#/home/phil/data/repos/oomox-gtk-theme/change_color.sh ~/.cache/wal/colors-oomox
+#/home/phil/.config/scripts/settheme oomox-colors-oomox
+
+# Update Mako theme
+/home/phil/.config/scripts/mako_update
+
+# Change room lights
+# current_time=$(date +"%H:%M")
+# current_day=$(date +"%a")
+# if [[ $current_day == "Sat" || $current_day == "Sun" ]]; then 
+#  sleep 0.5 
+#  /home/phil/.config/scripts/wplights
+#  sleep 0.5
+# elif [[ $current_time > "18:00" || $current_time < "06:00" ]]; then 
+#  sleep 0.5 
+#  /home/phil/.config/scripts/wplights
+#  sleep 0.5
+# fi
+# 
+# ~/.config/scripts/wbrestart

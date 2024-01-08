@@ -1,0 +1,211 @@
+Window 55da7dbe6dc0 -> Inbox - phileagleson1@gmail.com - Mozilla Thunderbird:
+	mapped: 1
+	hidden: 0
+	at: 7,51
+	size: 2546,1382
+	workspace: 5 (5)
+	floating: 0
+	monitor: 0
+	class: thunderbird
+	title: Inbox - phileagleson1@gmail.com - Mozilla Thunderbird
+	initialClass: thunderbird
+	initialTitle: Mozilla Thunderbird
+	pid: 2997
+	xwayland: 0
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7d9cdbc0 -> Live updating with systemd services · emersion/mako Wiki · GitHub — Mozilla Firefox:
+	mapped: 1
+	hidden: 0
+	at: 7,51
+	size: 1650,1382
+	workspace: 1 (1)
+	floating: 0
+	monitor: 0
+	class: firefox
+	title: Live updating with systemd services · emersion/mako Wiki · GitHub — Mozilla Firefox
+	initialClass: firefox
+	initialTitle: Mozilla Firefox
+	pid: 2999
+	xwayland: 0
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7dc0eb80 -> :
+	mapped: 0
+	hidden: 0
+	at: 0,0
+	size: 0,0
+	workspace: -1 ()
+	floating: 0
+	monitor: -1
+	class: 
+	title: 
+	initialClass: 
+	initialTitle: 
+	pid: 0
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7dc10340 -> :
+	mapped: 0
+	hidden: 0
+	at: 0,0
+	size: 0,0
+	workspace: -1 ()
+	floating: 0
+	monitor: -1
+	class: 
+	title: 
+	initialClass: 
+	initialTitle: 
+	pid: 0
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7dc11b60 -> :
+	mapped: 0
+	hidden: 0
+	at: 0,0
+	size: 0,0
+	workspace: -1 ()
+	floating: 0
+	monitor: -1
+	class: 
+	title: 
+	initialClass: 
+	initialTitle: 
+	pid: 0
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7dc14ba0 -> :
+	mapped: 0
+	hidden: 0
+	at: 0,0
+	size: 0,0
+	workspace: -1 ()
+	floating: 0
+	monitor: -1
+	class: 
+	title: 
+	initialClass: 
+	initialTitle: 
+	pid: 0
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7d8663f0 -> :
+	mapped: 0
+	hidden: 0
+	at: 0,0
+	size: 0,0
+	workspace: -1 ()
+	floating: 0
+	monitor: -1
+	class: 
+	title: 
+	initialClass: 
+	initialTitle: 
+	pid: 0
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7d79d020 -> :
+	mapped: 0
+	hidden: 0
+	at: 0,0
+	size: 0,0
+	workspace: -1 ()
+	floating: 0
+	monitor: -1
+	class: 
+	title: 
+	initialClass: 
+	initialTitle: 
+	pid: 0
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7dc13380 -> Live streams that Иван Леденев launched in the Video section on OK - Thorium:
+	mapped: 1
+	hidden: 0
+	at: 2567,51
+	size: 1906,1022
+	workspace: 6 (6)
+	floating: 0
+	monitor: 1
+	class: Thorium-browser
+	title: Live streams that Иван Леденев launched in the Video section on OK - Thorium
+	initialClass: Thorium-browser
+	initialTitle: New Incognito Tab - Thorium
+	pid: 5185
+	xwayland: 1
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+Window 55da7dbd6cb0 -> archie:
+	mapped: 1
+	hidden: 0
+	at: 1671,51
+	size: 882,1382
+	workspace: 1 (1)
+	floating: 0
+	monitor: 0
+	class: kitty
+	title: archie
+	initialClass: kitty
+	initialTitle: zsh
+	pid: 3001
+	xwayland: 0
+	pinned: 0
+	fullscreen: 0
+	fullscreenmode: 0
+	fakefullscreen: 0
+	grouped: 0
+	swallowing: 0
+
+

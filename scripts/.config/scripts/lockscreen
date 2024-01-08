@@ -3,12 +3,14 @@
 
 # Background Image
 #IMAGE="$HOME/Pictures/lockscreen.png"
-IMAGE="$HOME/Pictures/lwalpapers/wallpapers/b-584.jpg"
+#IMAGE="$HOME/Pictures/lwalpapers/wallpapers/b-584.jpg"
+IMAGE=$(cat ~/.current_wallpaper)
+source ~/.cache/wal/colors.sh
 
 # Colors
-bg='1e1e2e'		bgl='313244'		fg='d9e0ee'
-red='f38ba8'	green='a6e3a1'		yellow='f9e2af'
-blue='89b4fa'	magenta='cba6f7'	cyan='89dceb'
+bg=$background fg=$foreground
+red='f38ba8'	green=$color1		yellow=color2
+blue=$color3	magenta=$color4	cyan=$color5
 alpha='00000000'
 
 # CMD
@@ -32,7 +34,7 @@ swaylock -f \
 	--caps-lock-bs-hl-color ${red} \
 	\
 	`# Indicator` \
-	--indicator-radius 120 \
+	--indicator-radius 100 \
 	--indicator-thickness 10 \
 	\
 	`# Inside Circle Colors` \

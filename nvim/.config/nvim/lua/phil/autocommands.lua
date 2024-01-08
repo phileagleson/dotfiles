@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd('BufWritePre', { command = ':lua vim.lsp.buf.format(
 
 local group = vim.api.nvim_create_augroup('Format', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = "*.go",
+  pattern = {"*.go", "*.lua", "*.js", "*.ts", "*.svelte", "*.html", "*.css", "*.scss", "*.jsonc"},
   command = ':lua vim.lsp.buf.format()',
   group = group
 })
@@ -38,7 +38,9 @@ local foldGroup = vim.api.nvim_create_augroup('OpenFolds', { clear = true })
 vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost', 'FileReadPost', 'VimEnter' }, {
   pattern = 'poweron',
   callback = function()
-    vim.api.nvim_command('normal zR')
+    vim.defer_fn(function() 
+      vim.api.nvim_command('normal zR')
+    end, 100)
   end,
   group = foldGroup,
 })

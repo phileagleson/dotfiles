@@ -20,7 +20,7 @@ local html = s('!', fmt([[
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
+    <title>{}</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -30,6 +30,7 @@ local html = s('!', fmt([[
 </html>
 ]], {
     i(1, ''),
+    i(2, ''),
 }))
 
 table.insert(snippets, html)

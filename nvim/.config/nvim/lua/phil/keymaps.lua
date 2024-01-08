@@ -1,5 +1,5 @@
-vim.keymap.del('n','<C-H>')
-vim.keymap.set('n', '<C-H>', ':<C-U>TmuxNavigateLeft<cr>',{silent=true, noremap=true})
+vim.keymap.del("n", "<C-H>")
+vim.keymap.set("n", "<C-H>", ":<C-U>TmuxNavigateLeft<cr>", { silent = true, noremap = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -14,48 +14,39 @@ vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" }
 vim.keymap.set("n", "<leader>k", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>cprev<CR>zz")
 
--- Tree --
-vim.keymap.set(
-  'n', 
-  '<leader>n', 
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  {noremap=true}
-)
+-- keep copied item
+vim.keymap.set("v", "p", '"_dP')
+
+-- stay in indent mode
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Tmux nav --
-vim.keymap.set('n','<C-f>', "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set({'n','v'},'<leader>q', "<cmd>silent !jqpaste<CR>P:%!jq .<CR>")
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>silent !jqpaste<CR>P:%!jq .<CR>")
 
--- Make file executable 
-vim.keymap.set('n', '<leader>x',"<cmd>!chmod +x %<CR>", {silent = true})
+-- Make file executable
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- BUFFER NAV
-vim.keymap.set('n', '<leader>bn', '<cmd>bn<cr>', nil)
-vim.keymap.set('n', '<leader>bp', '<cmd>bp<cr>', nil)
+vim.keymap.set("n", "<leader>cd", "<cmd>:cd %:h<cr>", nil) -- change to dir of current open file
 
--- TAB NAV
-vim.keymap.set('n', '<leader>tn', '<cmd>tabn<cr>', nil)
-vim.keymap.set('n', '<leader>tp', '<cmd>tabp<cr>', nil)
-vim.keymap.set('n', '<leader>nt', '<cmd>tabnew<cr>', nil)
-vim.keymap.set('n', '<leader>nT', '<cmd>wincmd T<cr>', nil) -- open current window in new tab
-vim.keymap.set('n', '<leader>cd', '<cmd>:cd %:h<cr>', nil) -- change to dir of current open file
+vim.api.nvim_set_keymap(
+	"v",
+	"<Leader>y",
+	[[:lua YankMatchesToRegister('a', vim.fn.line("'<"), vim.fn.line("'>"))<CR>]],
+	{ noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap("n", "<Leader>p", ':lua vim.cmd("normal! \\"ap")<CR>', { noremap = true, silent = true })
 
+function YankMatchesToRegister(register, start_line, end_line)
+	local result = {}
 
--- CLOSING WINDOWS/TABS/BUFFERS
-vim.keymap.set('n', '<leader>c', '<cmd>clo<cr>', nil) -- won't close last window
-
-vim.api.nvim_set_keymap('v', '<Leader>y', [[:lua YankMatchesToRegister('a', vim.fn.line("'<"), vim.fn.line("'>"))<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>p', ':lua vim.cmd("normal! \\"ap")<CR>', { noremap = true, silent = true })
-
-function YankMatchesToRegister(register,start_line, end_line)
-    local result = {}
-
-    for line = start_line, end_line do
-        local text = vim.fn.getline(line)
-        local match = text:match('"([^"]+)"')
-        if match then
-            table.insert(result, match)
-        end
-    end
-  vim.fn.setreg(register,table.concat(result, '\n'))
+	for line = start_line, end_line do
+		local text = vim.fn.getline(line)
+		local match = text:match('"([^"]+)"')
+		if match then
+			table.insert(result, match)
+		end
+	end
+	vim.fn.setreg(register, table.concat(result, "\n"))
 end

@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+THEMENAME=$1
+
+gsettings set org.gnome.desktop.interface gtk-theme "$THEMENAME"
+gsettings set org.gnome.desktop.wm.preferences theme "$THEMENAME"
+
+

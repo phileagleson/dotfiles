@@ -1,0 +1,34 @@
+#!/bin/env bash
+
+source "/home/phil/.cache/wal/colors-homeassistant"
+token=$(pass show hatoken)
+current_time=$(date +"%H:%M")
+#brightness=255 # 0-255
+brightness=25
+# if [[ $current_time > "18:00" || $current_time < "06:00" ]]; then 
+#  brightness=75
+# fi
+
+curl -X POST \
+-H "Authorization: Bearer $token" \
+-H "Content-Type: application/json" \
+-d '{"entity_id":"light.mac_desk_lightstrip","rgb_color":'$color1',"brightness":'$brightness'}' \
+http://10.22.33.26:8123/api/services/light/turn_on
+
+curl -X POST \
+-H "Authorization: Bearer $token" \
+-H "Content-Type: application/json" \
+-d '{"entity_id":"light.work_desk_lightstrip","rgb_color":'$foreground',"brightness":'$brightness'}' \
+http://10.22.33.26:8123/api/services/light/turn_on
+
+curl -X POST \
+-H "Authorization: Bearer $token" \
+-H "Content-Type: application/json" \
+-d '{"entity_id":"light.overhead_light","rgb_color":'$background',"brightness":'$brightness'}' \
+http://10.22.33.26:8123/api/services/light/turn_on
+
+curl -X POST \
+-H "Authorization: Bearer $token" \
+-H "Content-Type: application/json" \
+-d '{"entity_id":"light.hue_go","rgb_color":'$background',"brightness":'$brightness'}' \
+http://10.22.33.26:8123/api/services/light/turn_on

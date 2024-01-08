@@ -1,7 +1,12 @@
+output=DP-1
+margin=5,7,5
+padding=10,10
+width=400
+height=150
 layer=overlay
-background-color=#303446
-text-color=#c6d0f5
-border-color=#8caaee
+background-color=#04060C
+text-color=#a3bfe4
+border-color=#496AA4
 progress-color=over #414559
 
 [urgency=high]

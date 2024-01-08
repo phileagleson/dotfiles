@@ -1,5 +1,8 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
 configuration{
     modi: "drun,window,emoji,websearch:~/.config/rofi/scripts/websearch,run,calc";
+    combi-modes: [drun,websearch];
     icon-theme: "Papirus";
     show-icons: true;
     terminal: "kitty";
@@ -18,53 +21,53 @@ configuration{
 //@theme "catppuccin-mocha"
 
 * {
-    bg-col: rgba(30,30,45,0.5);
-    bg-col-semisolid: rgba(30,30,45,0.8);
-    bg-col-solid: rgba(30,30,45,1);
-    bg-col-trans: rgba(30,30,45,0);
-    blue: rgba(137,180,250,0.5);
+//    bg-col: rgba(30,30,45,0.5);
+//    bg-col-semisolid: rgba(30,30,45,0.8);
+//    bg-col-solid: rgba(30,30,45,1);
+//    bg-col-trans: rgba(30,30,45,0);
+//    blue: rgba(137,180,250,0.5);
 }
 
 window {
-    background-color: @bg-col;
+//    background-color: @bg-col;
     border-radius: 15px;
-    width: 80%;
+    width: 30%;
 }
 
 mainbox {
-    background-color: @bg-col;
+//    background-color: @bg-col;
 }
 
 inputbar {
-    background-color: @bg-col-trans;
+ //   background-color: @bg-col-trans;
     border-radius: 10px;
 }
 
 prompt {
-    text-color: @bg-col-solid;
+//    text-color: @bg-col-solid;
     border-radius: 8px;
 }
 
 entry {
-    background-color: @bg-col-semisolid;
+//    background-color: @bg-col-semisolid;
     border-radius: 8px;
 }
 
 listview {
-    background-color: @bg-col-trans;
+ //   background-color: @bg-col-trans;
     lines: 8;
 }
 
 element {
-    background-color: @bg-col-trans;
+  //  background-color: @bg-col-trans;
 }
 
 sidebar {
-    background-color: @bg-col-trans;
+//    background-color: @bg-col-trans;
 }
 
 button {
-    background-color: @bg-col-trans;
+ //   background-color: @bg-col-trans;
 }
 
-@theme "/home/phil/.local/share/rofi/themes/catppuccin-mocha.rasi"
+//@theme "/home/phil/.local/share/rofi/themes/catppuccin-mocha.rasi"

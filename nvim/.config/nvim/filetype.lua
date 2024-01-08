@@ -30,5 +30,6 @@ vim.filetype.add({
     ['ELA.*'] = 'poweron',
     ['ela.*'] = 'poweron',
     ['/home/phil/projects/SourceControl/Main/Client Work/186 - USF/Staff Augmentation/*.*'] = 'poweron',
+    ['/home/phil/projects/poweron/*.*'] = 'poweron',
   }
 })
