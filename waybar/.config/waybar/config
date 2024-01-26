@@ -120,7 +120,7 @@
 {
     "height": 44, 
     "layer": "top",
-    "output": "HDMI-A-1",
+    "output": "DP-2",
     "spacing": 4,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],

@@ -17,6 +17,6 @@ if [[ -z $CURRENT_WP ]]; then
 fi
 
 hyprctl hyprpaper preload "$CURRENT_WP"
-hyprctl hyprpaper wallpaper "HDMI-A-1,$CURRENT_WP"
+hyprctl hyprpaper wallpaper "DP-2,$CURRENT_WP"
 hyprctl hyprpaper wallpaper "DP-1,$CURRENT_WP"
 hyprctl hyprpaper unload all
