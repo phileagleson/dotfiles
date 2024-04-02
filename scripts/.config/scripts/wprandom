@@ -25,12 +25,9 @@ hyprctl hyprpaper unload all
 
 wal -i "$wallpaper"
 
-# Generate GTK theme
-#/home/phil/data/repos/oomox-gtk-theme/change_color.sh ~/.cache/wal/colors-oomox
-#/home/phil/.config/scripts/settheme oomox-colors-oomox
-
+# Using Dracula everwhere for the time being
 # Update Mako theme
-/home/phil/.config/scripts/mako_update
+# /home/phil/.config/scripts/mako_update
 
 # Change room lights
 # current_time=$(date +"%H:%M")

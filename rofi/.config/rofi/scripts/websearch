@@ -3,6 +3,7 @@ DUCK="DuckDuckGo"
 DUCKICON="/home/phil/.config/rofi/scripts/duckduckgo.png"
 IMDB="IMDB"
 GOOGLE="Google"
+BRAVE="Brave"
 
 # Default to DuckDuckGo
 echo -en "\0prompt\x1f$DUCK\n"
@@ -19,24 +20,40 @@ elif [ x"$@" = x"IMDB" ]; then
 elif [ x"$@" = x"Google" ]; then 
   echo -en "\0prompt\x1f$GOOGLE\n"
   echo -en "\0data\x1f$GOOGLE\n"
+elif [ x"$@" = x"Brave" ]; then 
+  echo -en "\0prompt\x1f$BRAVE\n"
+  echo -en "\0data\x1f$BRAVE\n"
 elif [ "$ROFI_DATA" = "$DUCK" ]; then
+  echo ""
   tmp="$@"
   tmp=${tmp// /+}
   xdg-open https://duckduckgo.com/?q=$tmp
   exit 0
 elif [ "$ROFI_DATA" = "$IMDB" ]; then
+  echo ""
   tmp="$@"
   tmp=${tmp// /+}
   xdg-open https://www.imdb.com/find?q=$tmp 
   exit 0
 elif [ "$ROFI_DATA" = "$GOOGLE" ]; then
+  echo ""
   tmp="$@"
   tmp=${tmp// /+}
   xdg-open https://www.google.com/search?q=$tmp
   exit 0
+elif [ "$ROFI_DATA" = "$BRAVE" ]; then
+  tmp="$@"
+  tmp=${tmp// /+}
+  xdg-open https://search.brave.com/search?q=$tmp
+  exit 0
 fi
 
-
-echo "DuckDuckGo"
-echo "IMDB"
-echo "Google"
+if [ -z "$ROFI_DATA" ]
+then
+    echo "DuckDuckGo"
+    echo "IMDB"
+    echo "Google"
+    echo "Brave"
+else
+    echo "Search the web for "
+fi

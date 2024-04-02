@@ -1,31 +1,31 @@
-return {
+--[[ return {
     "rebelot/kanagawa.nvim",
     config = function()
         require("kanagawa").setup({
-            compile = false, 
-            undercurl = true, 
+            compile = false,
+            undercurl = true,
             commentStyle = { italic = true },
             functionStyle = {},
             keywordStyle = { italic = true },
             statementStyle = { bold = true },
             typeStyle = {},
-            transparent = false, 
-            dimInactive = true, 
-            terminalColors = true, 
-            colors = { 
+            transparent = false,
+            dimInactive = true,
+            terminalColors = true,
+            colors = {
                 palette = {},
-                theme = { 
-                    wave = {}, 
-                    lotus = {}, 
-                    dragon = {}, 
+                theme = {
+                    wave = {},
+                    lotus = {},
+                    dragon = {},
                     all = {
-                        ui = { 
-                                bg_gutter = "none" 
+                        ui = {
+                                bg_gutter = "none"
                             },
                     }
                 },
         },
-        overrides = function(colors) 
+        overrides = function(colors)
             local theme = colors.theme
             return {
                 NormalFloat = { bg = "none" },
@@ -40,13 +40,20 @@ return {
                 PmenuThumb = { bg = theme.ui.bg_p2 },
             }
         end,
-        theme = "wave",     
-        background = { 
-            dark = "wave", 
+        theme = "wave",
+        background = {
+            dark = "wave",
             light = "lotus",
         },
     })
 
     vim.cmd("colorscheme kanagawa")
     end,
+} ]]
+
+return {
+	"Mofiqul/dracula.nvim",
+	config = function()
+		vim.cmd([[colorscheme dracula-soft]])
+	end,
 }

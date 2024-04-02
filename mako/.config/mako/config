@@ -4,10 +4,16 @@ padding=10,10
 width=400
 height=150
 layer=overlay
-background-color=#04060C
-text-color=#a3bfe4
-border-color=#496AA4
-progress-color=over #414559
+
+background-color=#282a36
+text-color=#44475a
+border-color=#282a36
+
+[urgency=low]
+border-color=#282a36
+
+[urgency=normal]
+border-color=#f1fa8c
 
 [urgency=high]
-border-color=#ef9f76
+border-color=#ff5555
